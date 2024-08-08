@@ -108,9 +108,4 @@ public class User implements Comparable<User> {
         comparePair(myUser1, myUser1);
         comparePair(myUser2, myUser2);
     }
-
-
-
-
-
 }
