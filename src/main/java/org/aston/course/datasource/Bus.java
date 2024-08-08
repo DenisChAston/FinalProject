@@ -1,4 +1,5 @@
 package org.aston.course.datasource;
+
 //класс автобус
 public class Bus implements Comparable<Bus> {
     private String number; //номер
@@ -18,20 +19,8 @@ public class Bus implements Comparable<Bus> {
         this.mileage = mil; //пробег
     }
 
-    // далее идут геттеры и сеттеры
-    public void setNumber (String num) {
-        this.number = num;
-    }
-
-    public void setModel (String mod) {
-        this.model = mod;
-    }
-
-    public void setMileage (int mil) {
-        this.mileage = mil;
-    }
-
-    public String getNumber () {
+    //геттеры
+        public String getNumber () {
         return this.number;
     }
 
@@ -42,9 +31,8 @@ public class Bus implements Comparable<Bus> {
     public int getMileage () {
         return this.mileage;
     }
-    //конец геттеров и сеттеров
 
-    //переопределение метода cравнения, сравнение по номеру)
+    //переопределение метода cравнения, сравнениваем по номеру)
     @Override //возвращает отрицательное число, если первый меньше второго
     public int compareTo(Bus other) { //ноль, если объекты равны, иначе - положительное число
         return this.number.toLowerCase().compareTo(other.number.toLowerCase()); //сравнение по номеру
@@ -52,7 +40,7 @@ public class Bus implements Comparable<Bus> {
 
     //реализация паттерна Builder
     public static class Builder {
-        private Bus newBus;
+        private final Bus newBus;
 
         public Builder() {
             newBus = new Bus();
@@ -78,8 +66,7 @@ public class Bus implements Comparable<Bus> {
         }
     }
 
-//проверка класса
-
+//код для проверки
     public static void printClass(Bus B) {
         System.out.print("Номер: " + B.number);
         System.out.print(" Модель: " + B.model);
