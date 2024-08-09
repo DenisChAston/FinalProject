@@ -4,7 +4,7 @@ import org.aston.course.domain.model.SomeEntity;
 
 import java.util.Objects;
 
-public class Bus implements SomeEntity {
+public class Bus implements SomeEntity, Comparable<Bus> {
 
     private final int number;
     private final String model;
@@ -33,7 +33,6 @@ public class Bus implements SomeEntity {
         return String.format("Номер:%d, Модель:%s, Пробег:%d", number, model, mileage);
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,6 +48,13 @@ public class Bus implements SomeEntity {
         result = 31 * result + model.hashCode();
         result = 31 * result + mileage;
         return result;
+    }
+
+    @Override
+    public int compareTo(Bus otherBus) {
+        int numberComparing = Integer.compare(this.number, otherBus.getNumber());
+        int andModelComparing = numberComparing == 0 ? this.model.toLowerCase().compareTo(otherBus.getModel().toLowerCase()) : numberComparing;
+        return andModelComparing == 0 ? Integer.compare(this.mileage, otherBus.getMileage()) : andModelComparing;
     }
 
     public static class BusBuilder {

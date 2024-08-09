@@ -2,7 +2,9 @@ package org.aston.course.application.datasource;
 
 import org.aston.course.domain.model.SomeEntity;
 
-public class Student implements SomeEntity {
+import java.math.BigDecimal;
+
+public class Student implements SomeEntity, Comparable<Student> {
 
     private final int groupNumber;
     private final double averageScore;
@@ -46,6 +48,13 @@ public class Student implements SomeEntity {
     @Override
     public String toString() {
         return String.format("Номер группы:%d, Средний балл:%.2f, Номер зачетки:%d", groupNumber, averageScore, gradebookNumber);
+    }
+
+    @Override
+    public int compareTo(Student otherStudent) {
+        int groupComparing = Integer.compare(this.groupNumber, otherStudent.getGroupNumber());
+        int andGradebookComparing = groupComparing == 0 ? Integer.compare(this.gradebookNumber, otherStudent.getGroupNumber()) : groupComparing;
+        return andGradebookComparing == 0 ? new BigDecimal(this.averageScore).compareTo(new BigDecimal(otherStudent.getAverageScore())) : andGradebookComparing;
     }
 
     public static class StudentBuilder {

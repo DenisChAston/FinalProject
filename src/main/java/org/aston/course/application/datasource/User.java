@@ -2,7 +2,9 @@ package org.aston.course.application.datasource;
 
 import org.aston.course.domain.model.SomeEntity;
 
-public class User implements SomeEntity {
+import java.math.BigDecimal;
+
+public class User implements SomeEntity, Comparable<User> {
 
     private final String name;
     private final String password;
@@ -46,6 +48,13 @@ public class User implements SomeEntity {
     @Override
     public String toString() {
         return String.format("Имя:%s, Пароль:%s, Почта:%s", name, password, email);
+    }
+
+    @Override
+    public int compareTo(User otherUser) {
+        int nameComparing = this.name.toLowerCase().compareTo(otherUser.getName().toLowerCase());
+        int andEmailComparing = nameComparing == 0 ? this.email.toLowerCase().compareTo(otherUser.getEmail().toLowerCase()) : nameComparing;
+        return andEmailComparing == 0 ? this.password.toLowerCase().compareTo(otherUser.getPassword().toLowerCase()) : andEmailComparing;
     }
 
     public static class UserBuilder {
