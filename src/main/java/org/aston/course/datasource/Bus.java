@@ -2,25 +2,18 @@ package org.aston.course.datasource;
 
 //класс автобус
 public class Bus implements Comparable<Bus> {
-    private String number; //номер
-    private String model; //модель
-    private int mileage; //пробег
+    private final String number; //номер
+    private final String model; //модель
+    private final int mileage; //пробег
 
-    //конструктор без параметров
-    Bus () {
-        this.number = "x000xx000";
-        this.model = "unknown";
-        this.mileage = 0;
-    }
     //конструктор с параметрами
-    Bus (String num, String mod, int mil) {
-        this.number = num; //номер
-        this.model = mod;  //модель
-        this.mileage = mil; //пробег
+    private Bus (BusBuilder builder) {
+        this.number = builder.number; //номер
+        this.model = builder.model;  //модель
+        this.mileage = builder.mileage; //пробег
     }
-
     //геттеры
-        public String getNumber () {
+    public String getNumber () {
         return this.number;
     }
 
@@ -35,42 +28,44 @@ public class Bus implements Comparable<Bus> {
     //переопределение метода cравнения, сравнениваем по номеру)
     @Override //возвращает отрицательное число, если первый меньше второго
     public int compareTo(Bus other) { //ноль, если объекты равны, иначе - положительное число
-        return this.number.toLowerCase().compareTo(other.number.toLowerCase()); //сравнение по номеру
+        return this.getNumber().toLowerCase().compareTo(other.getNumber().toLowerCase()); //сравнение по номеру
     } //перед сравнением приводим номера к нижнему регистру
 
+    //возвращает поля объекта в виде форматированной строки
+    public static String toString(Bus B) {
+        return "Номер: " + B.getNumber() +
+                ", Модель: " + B.getModel() +
+                ", Пробег: " + B.getMileage();
+    }
+
     //реализация паттерна Builder
-    public static class Builder {
-        private final Bus newBus;
+    public static class BusBuilder {
+        private String number; //номер
+        private String model; //модель
+        private int mileage; //пробег
 
-        public Builder() {
-            newBus = new Bus();
-        }
-
-        public Builder withNumber(String num) {
-            newBus.number = num;
+        public BusBuilder withNumber(String number) {
+            this.number = number;
             return this;
         }
 
-        public Builder withModel(String mod) {
-            newBus.model = mod;
+        public BusBuilder withModel(String model) {
+            this.model = model;
             return this;
         }
 
-        public Builder withMileage(int mil) {
-            newBus.mileage = mil;
+        public BusBuilder withMileage(int mileage) {
+            this.mileage = mileage;
             return this;
         }
 
         public Bus build() {
-            return newBus;
+            return new Bus(this);
         }
     }
-
-//код для проверки
+//удалить
     public static void printClass(Bus B) {
-        System.out.print("Номер: " + B.number);
-        System.out.print(" Модель: " + B.model);
-        System.out.println(" Пробег: " + B.mileage);
+        System.out.println(toString(B));
     }
 
     public static void comparePair(Bus B1, Bus B2) {
@@ -85,12 +80,12 @@ public class Bus implements Comparable<Bus> {
     }
 
     public static void main(String[] args) {
-        Bus myBus1 = new Bus.Builder()
+        Bus myBus1 = new Bus.BusBuilder()
                 .withNumber("a007aa007")
                 .withModel("Ikarus")
                 .withMileage(32000)
                 .build();
-        Bus myBus2 = new Bus.Builder()
+        Bus myBus2 = new Bus.BusBuilder()
                 .withNumber("x001xx001")
                 .withModel("Luidor")
                 .withMileage(50000)
@@ -102,4 +97,5 @@ public class Bus implements Comparable<Bus> {
         comparePair(myBus1, myBus1);
         comparePair(myBus2, myBus2);
     }
+//
 }

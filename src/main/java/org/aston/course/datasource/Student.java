@@ -2,22 +2,15 @@ package org.aston.course.datasource;
 
 //класс Студент
 public class Student implements Comparable<Student>{
-    private int gradeBookNum; //номер зачетной книжки
-    private int groupNumber; //номер группы
-    private double averageScore; //средний бал
+    private final int gradeBookNum; //номер зачетной книжки
+    private final int groupNumber; //номер группы
+    private final double averageScore; //средний бал
 
-
-    //конструктор без параметров
-    Student () {
-        this.gradeBookNum = 0;
-        this.averageScore = 0;
-        this.groupNumber = 0;
-    }
     //конструктор с параметрами
-    Student (int gBookNum, int groupNum, double avScore) {
-        this.gradeBookNum = gBookNum; //номер зачетной книжки
-        this.groupNumber = groupNum;  //номер группы
-        this.averageScore = avScore; //средний бал
+    private Student (StudentBuilder builder) {
+        this.gradeBookNum = builder.gradeBookNum; //номер зачетной книжки
+        this.groupNumber = builder.groupNumber;  //номер группы
+        this.averageScore = builder.averageScore; //средний бал
     }
 
     //геттеры
@@ -36,42 +29,45 @@ public class Student implements Comparable<Student>{
     //переопределение метода cравнения, сравнениваем по номеру)
     @Override //возвращает отрицательное число, если первый меньше второго
     public int compareTo(Student other) { //ноль, если объекты равны, иначе - положительное число
-        return this.gradeBookNum - other.gradeBookNum; //сравнение по номеру зачетной книжки, как уникального значения
+        return this.getGradeBookNum() - other.getGradeBookNum(); //сравнение по номеру зачетной книжки, как уникального значения
     } //метод compareTo из класса Integer не применен, поскольку не работает с примитивами
 
+    //возвращает поля объекта в виде форматированной строки
+    public static String toString(Student S) {
+        return "Номер зачетной книжки: " + S.gradeBookNum +
+                ", Номер группы: " + S.getGroupNumber() +
+                ", Средний бал: " + S.getAverageScore();
+    }
+
     //реализация паттерна Builder
-    public static class Builder {
-        private final Student newStudent;
+    public static class StudentBuilder {
+        private int gradeBookNum; //номер зачетной книжки
+        private int groupNumber; //номер группы
+        private double averageScore; //средний бал
 
-        public Builder() {
-            newStudent = new Student();
-        }
-
-        public Student.Builder withGradeBookNum(int gBookNum) {
-            newStudent.gradeBookNum = gBookNum;
+        public Student.StudentBuilder withGradeBookNum(int gBookNum) {
+            this.gradeBookNum = gBookNum;
             return this;
         }
 
-        public Student.Builder withGroupNumber(int groupNum) {
-            newStudent.groupNumber = groupNum;
+        public Student.StudentBuilder withGroupNumber(int groupNum) {
+            this.groupNumber = groupNum;
             return this;
         }
 
-        public Student.Builder withAverageScore(double avScore) {
-            newStudent.averageScore = avScore;
+        public Student.StudentBuilder withAverageScore(double avScore) {
+            this.averageScore = avScore;
             return this;
         }
 
         public Student build() {
-            return newStudent;
+            return new Student(this);
         }
     }
 
     //код для проверки
     public static void printClass(Student S) {
-        System.out.print("Номер зачетной книжки: " + S.gradeBookNum);
-        System.out.print(" Номер группы: " + S.groupNumber);
-        System.out.println(" Средний бал: " + S.averageScore);
+        System.out.println(toString(S));
     }
 
     public static void comparePair(Student S1, Student S2) {
@@ -86,12 +82,12 @@ public class Student implements Comparable<Student>{
     }
 
     public static void main(String[] args) {
-        Student myStudent1 = new Student.Builder()
+        Student myStudent1 = new Student.StudentBuilder()
                 .withGradeBookNum(846123)
                 .withGroupNumber(312)
                 .withAverageScore(4.50)
                 .build();
-        Student myStudent2 = new Student.Builder()
+        Student myStudent2 = new Student.StudentBuilder()
                 .withGradeBookNum(654846)
                 .withGroupNumber(212)
                 .withAverageScore(4.00)
@@ -103,4 +99,5 @@ public class Student implements Comparable<Student>{
         comparePair(myStudent1, myStudent1);
         comparePair(myStudent2, myStudent2);
     }
+    //
 }

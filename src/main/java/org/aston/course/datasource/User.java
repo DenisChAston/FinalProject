@@ -3,21 +3,15 @@ package org.aston.course.datasource;
 //класс Пользователь
 public class User implements Comparable<User> {
 
-    private String name; //имя
-    private String password; //пароль
-    private String email; //почта
+    private final String name; //имя
+    private final String password; //пароль
+    private final String email; //почта
 
-    //конструктор без параметров
-    User () {
-        this.name = "unknown";
-        this.password = "unknown";
-        this.email = "unknown";
-    }
     //конструктор с параметрами
-    User (String name, String pass, String mail) {
-        this.name = name; //имя
-        this.password = pass;  //пароль
-        this.email = mail; //почта
+    private User (UserBuilder builder) {
+        this.name = builder.name; //имя
+        this.password = builder.password;  //пароль
+        this.email = builder.email; //почта
     }
 
     //геттеры
@@ -36,47 +30,49 @@ public class User implements Comparable<User> {
     //переопределение метода cравнения, сравнениваем по имени)
     @Override //возвращает отрицательное число, если первый меньше второго
     public int compareTo(User other) { //ноль, если объекты равны, иначе - положительное число
-        int result = this.name.toLowerCase().compareTo(other.name.toLowerCase()); //сравнение по номеру
+        int result = this.getName().toLowerCase().compareTo(other.getName().toLowerCase()); //сравнение по номеру
         if (result == 0) { //если имена совпадают, сравниваем адреса электронной почты
-            result = this.email.toLowerCase().compareTo(other.email.toLowerCase());
+            result = this.getEmail().toLowerCase().compareTo(other.getEmail().toLowerCase());
         }
         return result;
-
     } //перед сравнением приводим имена и адреса почты к нижнему регистру
 
+    //возвращает поля объекта в виде форматированной строки
+    public static String toString(User U) {
+        return "Имя: " + U.getName() +
+                ", Пароль: " + U.getPassword() +
+                ", E-mail: " + U.getEmail();
+    }
+
     //реализация паттерна Builder
-    public static class Builder {
-        private final User newUser;
+    public static class UserBuilder {
+        private String name; //имя
+        private String password; //пароль
+        private String email; //почта
 
-        public Builder() {
-            newUser = new User();
-        }
-
-        public User.Builder withName(String name) {
-            newUser.name = name;
+        public User.UserBuilder withName(String name) {
+            this.name = name;
             return this;
         }
 
-        public User.Builder withPassword(String pass) {
-            newUser.password = pass;
+        public User.UserBuilder withPassword(String pass) {
+            this.password = pass;
             return this;
         }
 
-        public User.Builder withEmail(String mail) {
-            newUser.email = mail;
+        public User.UserBuilder withEmail(String mail) {
+            this.email = mail;
             return this;
         }
 
         public User build() {
-            return newUser;
+            return new User(this);
         }
     }
 
     //код для проверки
     public static void printClass(User U) {
-        System.out.print("Имя: " + U.name);
-        System.out.print(" Пароль: " + U.password);
-        System.out.println(" E-mail: " + U.email);
+        System.out.println(toString(U));
     }
 
     public static void comparePair(User U1, User U2) {
@@ -91,12 +87,12 @@ public class User implements Comparable<User> {
     }
 
     public static void main(String[] args) {
-        User myUser1 = new User.Builder()
-                .withName("Aleksei")
+        User myUser1 = new User.UserBuilder()
+                .withName("Petrov")
                 .withPassword("1234567890")
-                .withEmail("dolinin@mail.ru")
+                .withEmail("petrov@mail.ru")
                 .build();
-        User myUser2 = new User.Builder()
+        User myUser2 = new User.UserBuilder()
                 .withName("Ivan")
                 .withPassword("0987654321")
                 .withEmail("ivanov@mail.ru")
@@ -108,4 +104,5 @@ public class User implements Comparable<User> {
         comparePair(myUser1, myUser1);
         comparePair(myUser2, myUser2);
     }
+    //
 }
