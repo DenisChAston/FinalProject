@@ -9,8 +9,8 @@ public class BusCreatorImpl implements EntityCreator<Bus> {
     @Override
     public Bus create(String number, String model, String mileage) {
         int tempNumber = Integer.parseInt(number);
-        Model tempModel = Model.valueOf(model);
+        //Model tempModel = Model.valueOf(model);
         int temMileage = Integer.parseInt(mileage);
-        return new Bus.BusBuilder().setNumber(tempNumber).setModel(tempModel).setMileage(temMileage).build();
+        return new Bus.BusBuilder().setNumber(tempNumber).setModel(model).setMileage(temMileage).build();
     }
 }

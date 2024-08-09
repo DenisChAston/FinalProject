@@ -7,10 +7,10 @@ import java.util.Objects;
 public class Bus implements SomeEntity {
 
     private final int number;
-    private final Model model;
+    private final String model;
     private final int mileage;
 
-    private Bus(int number, Model model, int mileage) {
+    private Bus(int number, String model, int mileage) {
         this.number = number;
         this.model = model;
         this.mileage = mileage;
@@ -20,7 +20,7 @@ public class Bus implements SomeEntity {
         return number;
     }
 
-    public Model getModel() {
+    public String getModel() {
         return model;
     }
 
@@ -40,13 +40,13 @@ public class Bus implements SomeEntity {
         if (o == null || getClass() != o.getClass()) return false;
 
         Bus bus = (Bus) o;
-        return number == bus.number && mileage == bus.mileage && model == bus.model;
+        return number == bus.number && mileage == bus.mileage && model.equals(bus.model);
     }
 
     @Override
     public int hashCode() {
         int result = number;
-        result = 31 * result + Objects.hashCode(model);
+        result = 31 * result + model.hashCode();
         result = 31 * result + mileage;
         return result;
     }
@@ -54,7 +54,7 @@ public class Bus implements SomeEntity {
     public static class BusBuilder {
 
         private int number;
-        private Model model;
+        private String model;
         private int mileage;
 
         public BusBuilder setNumber(int number) {
@@ -62,7 +62,7 @@ public class Bus implements SomeEntity {
             return this;
         }
 
-        public BusBuilder setModel(Model model) {
+        public BusBuilder setModel(String model) {
             this.model = model;
             return this;
         }
