@@ -1,7 +1,7 @@
 package org.aston.course.application.usecase.creators;
 
 import org.aston.course.application.datasource.Student;
-import org.aston.course.domain.model.business.EntityCreator;
+import org.aston.course.domain.business.EntityCreator;
 
 public class StudentCreatorImpl implements EntityCreator<Student> {
 

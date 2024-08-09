@@ -7,8 +7,8 @@ import org.aston.course.application.usecase.strategies.ConsoleLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.FileLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.RandomLoadStrategyImpl;
 import org.aston.course.domain.model.SomeEntity;
-import org.aston.course.domain.model.application.LoadStrategy;
-import org.aston.course.domain.model.business.EntityCreator;
+import org.aston.course.domain.application.LoadStrategy;
+import org.aston.course.domain.business.EntityCreator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -51,6 +51,7 @@ public class Context {
             String t = reader.readLine();
             loadStrategyMap.get(t).load(list, createStrategyMap.get(s), 2);
             System.out.println(list);
+
         }
 
     }

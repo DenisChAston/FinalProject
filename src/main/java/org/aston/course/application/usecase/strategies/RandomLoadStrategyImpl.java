@@ -1,8 +1,8 @@
 package org.aston.course.application.usecase.strategies;
 
 import org.aston.course.domain.model.SomeEntity;
-import org.aston.course.domain.model.application.LoadStrategy;
-import org.aston.course.domain.model.business.EntityCreator;
+import org.aston.course.domain.application.LoadStrategy;
+import org.aston.course.domain.business.EntityCreator;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
-package org.aston.course.domain.model.application;
+package org.aston.course.domain.application;
 
 import org.aston.course.domain.model.SomeEntity;
-import org.aston.course.domain.model.business.EntityCreator;
+import org.aston.course.domain.business.EntityCreator;
 
 import java.util.List;
 

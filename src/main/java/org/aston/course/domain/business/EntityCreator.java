@@ -1,4 +1,4 @@
-package org.aston.course.domain.model.business;
+package org.aston.course.domain.business;
 
 import org.aston.course.domain.model.SomeEntity;
 
