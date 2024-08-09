@@ -63,39 +63,4 @@ public class Bus implements SomeEntity, Comparable<Bus> {
             return new Bus(this);
         }
     }
-//удалить
-    public static void printClass(Bus B) {
-        System.out.println(toString(B));
-    }
-
-    public static void comparePair(Bus B1, Bus B2) {
-        int comp = B1.compareTo(B2);
-        if (comp == 0) {
-            System.out.println(B1.number + " и " + B2.number + " равны.");
-        }
-        else if (comp < 0) {
-            System.out.println(B1.number + " меньше " + B2.number);
-        }
-        else  System.out.println(B1.number + " больше " + B2.number);
-    }
-
-    public static void main(String[] args) {
-        Bus myBus1 = new Bus.BusBuilder()
-                .withNumber("a007aa007")
-                .withModel("Ikarus")
-                .withMileage(32000)
-                .build();
-        Bus myBus2 = new Bus.BusBuilder()
-                .withNumber("x001xx001")
-                .withModel("Luidor")
-                .withMileage(50000)
-                .build();
-        printClass(myBus1);
-        printClass(myBus2);
-        comparePair(myBus1, myBus2);
-        comparePair(myBus2, myBus1);
-        comparePair(myBus1, myBus1);
-        comparePair(myBus2, myBus2);
-    }
-//
 }

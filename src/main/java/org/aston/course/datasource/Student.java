@@ -64,40 +64,4 @@ public class Student implements SomeEntity, Comparable<Student>{
             return new Student(this);
         }
     }
-
-    //код для проверки
-    public static void printClass(Student S) {
-        System.out.println(toString(S));
-    }
-
-    public static void comparePair(Student S1, Student S2) {
-        int comp = S1.compareTo(S2);
-        if (comp == 0) {
-            System.out.println(S1.gradeBookNum + " и " + S2.gradeBookNum + " равны.");
-        }
-        else if (comp < 0) {
-            System.out.println(S1.gradeBookNum + " меньше " + S2.gradeBookNum);
-        }
-        else  System.out.println(S1.gradeBookNum + " больше " + S2.gradeBookNum);
-    }
-
-    public static void main(String[] args) {
-        Student myStudent1 = new Student.StudentBuilder()
-                .withGradeBookNum(846123)
-                .withGroupNumber(312)
-                .withAverageScore(4.50)
-                .build();
-        Student myStudent2 = new Student.StudentBuilder()
-                .withGradeBookNum(654846)
-                .withGroupNumber(212)
-                .withAverageScore(4.00)
-                .build();
-        printClass(myStudent1);
-        printClass(myStudent2);
-        comparePair(myStudent1, myStudent2);
-        comparePair(myStudent2, myStudent1);
-        comparePair(myStudent1, myStudent1);
-        comparePair(myStudent2, myStudent2);
-    }
-    //
 }

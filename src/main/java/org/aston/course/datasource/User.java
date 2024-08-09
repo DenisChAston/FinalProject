@@ -69,40 +69,4 @@ public class User implements SomeEntity, Comparable<User> {
             return new User(this);
         }
     }
-
-    //код для проверки
-    public static void printClass(User U) {
-        System.out.println(toString(U));
-    }
-
-    public static void comparePair(User U1, User U2) {
-        int comp = U1.compareTo(U2);
-        if (comp == 0) {
-            System.out.println(U1.name + " и " + U2.name + " равны.");
-        }
-        else if (comp < 0) {
-            System.out.println(U1.name + " меньше " + U2.name);
-        }
-        else  System.out.println(U1.name + " больше " + U2.name);
-    }
-
-    public static void main(String[] args) {
-        User myUser1 = new User.UserBuilder()
-                .withName("Petrov")
-                .withPassword("1234567890")
-                .withEmail("petrov@mail.ru")
-                .build();
-        User myUser2 = new User.UserBuilder()
-                .withName("Ivan")
-                .withPassword("0987654321")
-                .withEmail("ivanov@mail.ru")
-                .build();
-        printClass(myUser1);
-        printClass(myUser2);
-        comparePair(myUser1, myUser2);
-        comparePair(myUser2, myUser1);
-        comparePair(myUser1, myUser1);
-        comparePair(myUser2, myUser2);
-    }
-    //
 }
