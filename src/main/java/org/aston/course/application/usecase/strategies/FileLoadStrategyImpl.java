@@ -9,7 +9,7 @@ import java.util.List;
 public class FileLoadStrategyImpl implements LoadStrategy {
 
     @Override
-    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator) {
+    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator, int entityCount) {
         T temp = creator.create("UserName", "PASSW", "d@gmail.com");
         list.add(temp);
     }

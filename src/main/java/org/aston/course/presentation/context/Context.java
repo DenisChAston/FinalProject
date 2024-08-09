@@ -49,7 +49,7 @@ public class Context {
             list = new ArrayList<>();
             System.out.println("Введите откуда");
             String t = reader.readLine();
-            loadStrategyMap.get(t).load(list, createStrategyMap.get(s));
+            loadStrategyMap.get(t).load(list, createStrategyMap.get(s), 2);
             System.out.println(list);
         }
 

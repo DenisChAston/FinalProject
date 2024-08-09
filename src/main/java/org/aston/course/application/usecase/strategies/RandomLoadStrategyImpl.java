@@ -9,7 +9,7 @@ import java.util.List;
 public class RandomLoadStrategyImpl implements LoadStrategy {
 
     @Override
-    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator) {
+    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator, int entityCount) {
         T temp = creator.create("12", "4.25", "1223");
         list.add(temp);
     }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface LoadStrategy {
 
-   <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator);
+   <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator, int entityCount);
 }

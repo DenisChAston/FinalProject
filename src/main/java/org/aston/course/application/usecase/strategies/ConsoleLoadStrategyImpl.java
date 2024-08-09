@@ -10,7 +10,7 @@ import java.util.List;
 public class ConsoleLoadStrategyImpl implements LoadStrategy {
 
     @Override
-    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator) {
+    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator, int entityCount) {
         T temp = creator.create("53", "MAZ", "1000");
         list.add(temp);
     }
