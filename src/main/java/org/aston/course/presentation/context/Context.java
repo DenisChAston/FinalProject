@@ -1,7 +1,7 @@
 package org.aston.course.presentation.context;
 
 import org.aston.course.application.usecase.creators.BusCreatorImpl;
-import org.aston.course.application.usecase.creators.PersonCreatorImpl;
+import org.aston.course.application.usecase.creators.UserCreatorImpl;
 import org.aston.course.application.usecase.creators.StudentCreatorImpl;
 import org.aston.course.application.usecase.strategies.ConsoleLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.FileLoadStrategyImpl;
@@ -35,7 +35,7 @@ public class Context {
         createStrategyMap = new HashMap<>();
         createStrategyMap.put("1", new BusCreatorImpl());
         createStrategyMap.put("2", new StudentCreatorImpl());
-        createStrategyMap.put("3", new PersonCreatorImpl());
+        createStrategyMap.put("3", new UserCreatorImpl());
     }
 
     public void startApp() throws IOException {
