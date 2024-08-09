@@ -34,7 +34,7 @@ public class Student implements SomeEntity, Comparable<Student>{
 
     //возвращает поля объекта в виде форматированной строки
     public static String toString(Student S) {
-        return "Номер зачетной книжки: " + S.gradeBookNum +
+        return "Номер зачетной книжки: " + S.getGradeBookNum() +
                 ", Номер группы: " + S.getGroupNumber() +
                 ", Средний бал: " + S.getAverageScore();
     }
