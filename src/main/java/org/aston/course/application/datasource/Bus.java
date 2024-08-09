@@ -2,19 +2,21 @@ package org.aston.course.application.datasource;
 
 import org.aston.course.domain.model.SomeEntity;
 
+import java.util.Objects;
+
 public class Bus implements SomeEntity {
 
-    private final String number;
+    private final int number;
     private final Model model;
     private final int mileage;
 
-    private Bus(String number, Model model, int mileage) {
+    private Bus(int number, Model model, int mileage) {
         this.number = number;
         this.model = model;
         this.mileage = mileage;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
@@ -28,8 +30,9 @@ public class Bus implements SomeEntity {
 
     @Override
     public String toString() {
-        return String.format("Номер:%s, Модель:%s, Пробег:%d", number, model, mileage);
+        return String.format("Номер:%d, Модель:%s, Пробег:%d", number, model, mileage);
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -37,24 +40,24 @@ public class Bus implements SomeEntity {
         if (o == null || getClass() != o.getClass()) return false;
 
         Bus bus = (Bus) o;
-        return mileage == bus.mileage && number.equals(bus.number) && model == bus.model;
+        return number == bus.number && mileage == bus.mileage && model == bus.model;
     }
 
     @Override
     public int hashCode() {
-        int result = number.hashCode();
-        result = 31 * result + model.hashCode();
+        int result = number;
+        result = 31 * result + Objects.hashCode(model);
         result = 31 * result + mileage;
         return result;
     }
 
     public static class BusBuilder {
 
-        private String number;
+        private int number;
         private Model model;
         private int mileage;
 
-        public BusBuilder setNumber(String number) {
+        public BusBuilder setNumber(int number) {
             this.number = number;
             return this;
         }

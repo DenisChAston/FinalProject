@@ -43,7 +43,7 @@ public class Context {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String s = "";
 
-        while(s != "Q") {
+        while(!s.equals("Q")) {
             System.out.println("Введите класс");
             s = reader.readLine();
             list = new ArrayList<>();
