@@ -1,7 +1,7 @@
 package org.aston.course.datasource;
 
 //класс автобус
-public class Bus implements Comparable<Bus> {
+public class Bus implements SomeEntity, Comparable<Bus> {
     private final String number; //номер
     private final String model; //модель
     private final int mileage; //пробег

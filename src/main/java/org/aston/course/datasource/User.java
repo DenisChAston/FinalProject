@@ -1,7 +1,7 @@
 package org.aston.course.datasource;
 
 //класс Пользователь
-public class User implements Comparable<User> {
+public class User implements SomeEntity, Comparable<User> {
 
     private final String name; //имя
     private final String password; //пароль

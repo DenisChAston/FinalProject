@@ -1,7 +1,7 @@
 package org.aston.course.datasource;
 
 //класс Студент
-public class Student implements Comparable<Student>{
+public class Student implements SomeEntity, Comparable<Student>{
     private final int gradeBookNum; //номер зачетной книжки
     private final int groupNumber; //номер группы
     private final double averageScore; //средний бал
