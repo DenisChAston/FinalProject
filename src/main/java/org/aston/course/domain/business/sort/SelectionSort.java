@@ -1,4 +1,4 @@
-package org.aston.course.sort;
+package org.aston.course.domain.business.sort;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -28,6 +28,8 @@ public class SelectionSort {
             T min = list.get(i);
             for (int j = i + 1; j < list.size(); j++) {
                 // Нужно чтобы здесь я мог вызывать один из трех методов для сравнения выбранного поля
+
+                //сравнивай объекты
                 if (list.get(j).compareTo(min) < 0) {
                     pos = j;
                     min = list.get(j);
@@ -37,24 +39,4 @@ public class SelectionSort {
             list.set(i, min);
         }
     }
-
-
-    public static void main(String[] args) {
-
-        Student student1 = new Student(3, 0, 0);
-        Student student2 = new Student(1, 0, 0);
-        Student student3 = new Student(2, 0, 0);
-        Student student4 = new Student(4, 0, 0);
-
-        List<Student> students = new ArrayList<>();
-        students.add(student1);
-        students.add(student2);
-        students.add(student3);
-        students.add(student4);
-
-        System.out.println(students);
-        sort(students);
-        System.out.println(students);
-    }
-
 }
