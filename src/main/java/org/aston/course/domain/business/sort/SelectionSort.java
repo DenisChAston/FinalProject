@@ -1,5 +1,7 @@
 package org.aston.course.domain.business.sort;
 
+import org.aston.course.domain.model.SomeEntity;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +30,6 @@ public class SelectionSort {
             T min = list.get(i);
             for (int j = i + 1; j < list.size(); j++) {
                 // Нужно чтобы здесь я мог вызывать один из трех методов для сравнения выбранного поля
-
-                //сравнивай объекты
                 if (list.get(j).compareTo(min) < 0) {
                     pos = j;
                     min = list.get(j);

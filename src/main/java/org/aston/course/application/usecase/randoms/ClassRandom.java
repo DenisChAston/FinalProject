@@ -7,6 +7,6 @@ public class ClassRandom implements Generator<Bus> {
 
     @Override
     public Bus generate() {
-        return null;
+        return new Bus.BusBuilder().setNumber(12).setModel("asd").setMileage(1000).build();
     }
 }

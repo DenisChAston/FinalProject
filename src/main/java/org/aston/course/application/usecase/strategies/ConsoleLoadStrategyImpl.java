@@ -22,7 +22,6 @@ public class ConsoleLoadStrategyImpl implements LoadStrategy {
             String t = scanner.next();
             T temp = creator.create(f, s, t);
             list.add(temp);
-
         }
     }
 }
