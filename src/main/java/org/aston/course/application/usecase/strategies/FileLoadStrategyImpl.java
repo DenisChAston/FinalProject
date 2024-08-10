@@ -1,17 +1,15 @@
 package org.aston.course.application.usecase.strategies;
-
 import org.aston.course.domain.model.SomeEntity;
 import org.aston.course.domain.application.LoadStrategy;
 import org.aston.course.domain.business.EntityCreator;
 
 import java.io.*;
 import java.util.List;
-import java.util.Scanner;
 
 public class FileLoadStrategyImpl implements LoadStrategy {
 
     @Override
-    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator, int entityCount) {
+    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator) {
         try {
             System.out.println("Введите полный путь к файлу и его НАЗВАНИЕ.txt");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

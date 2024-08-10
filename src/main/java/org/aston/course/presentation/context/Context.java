@@ -43,13 +43,13 @@ public class Context {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String s = "";
 
-        while(!s.equals("Q")) {
+        while (!s.equals("Q")) {
             System.out.println("Введите класс");
             s = reader.readLine();
             list = new ArrayList<>();
             System.out.println("Введите откуда");
             String t = reader.readLine();
-            loadStrategyMap.get(t).load(list, createStrategyMap.get(s), 2);
+            loadStrategyMap.get(t).load(list, createStrategyMap.get(s));
             System.out.println(list);
 
         }
