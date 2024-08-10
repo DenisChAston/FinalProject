@@ -30,7 +30,12 @@ public class CustomList<T extends Comparable<T>> {
         return list.get(index);
     }
 
-    public void sort() {
+    @Override
+    public String toString() {
+        return list.toString();
+    }
+
+    /*    public void sort() {
         for (int i = 0; i < list.size(); i++) {
             int pos = i;
             T min = list.get(i);
@@ -48,7 +53,7 @@ public class CustomList<T extends Comparable<T>> {
 
     public void binarySearch(T entity) {
 
-    }
+    }*/
 
 
 }

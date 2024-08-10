@@ -1,25 +1,22 @@
 package org.aston.course.application.usecase.strategies;
 
 import org.aston.course.application.datasource.CustomList;
-import org.aston.course.domain.model.SomeEntity;
 import org.aston.course.domain.application.LoadStrategy;
-import org.aston.course.domain.business.EntityCreator;
+import org.aston.course.domain.model.EntityCreator;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleLoadStrategyImpl implements LoadStrategy {
 
     @Override
-    public <T extends Comparable<T>> void load(CustomList<T> list, EntityCreator creator, int entityCount) {
+    public <T extends Comparable<T>> void load(CustomList<T> list, EntityCreator creator) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Введите количество объектов в базе данных:");
-        for (int i = scanner.nextInt(); i > 0; i--) {
-            System.out.println("Введите первый параметр объекта");
+        for (int i = 1; i <= list.size(); i++) {
+            System.out.printf("Введите %s %d\n", creator.getFirstParamName(), i);
             String f = scanner.next();
-            System.out.println("Введите второй параметр объекта");
+            System.out.printf("Введите %s %d\n", creator.getSecondParamName(), i);
             String s = scanner.next();
-            System.out.println("Введите третий параметр объекта");
+            System.out.printf("Введите %s %d\n", creator.getThirdParamName(), i);
             String t = scanner.next();
             T temp = creator.create(f, s, t);
             list.add(temp);

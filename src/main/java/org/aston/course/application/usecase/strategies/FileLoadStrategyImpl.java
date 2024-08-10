@@ -1,21 +1,19 @@
 package org.aston.course.application.usecase.strategies;
 
 import org.aston.course.application.datasource.CustomList;
-import org.aston.course.domain.model.SomeEntity;
 import org.aston.course.domain.application.LoadStrategy;
-import org.aston.course.domain.business.EntityCreator;
+import org.aston.course.domain.model.EntityCreator;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
 
 public class FileLoadStrategyImpl implements LoadStrategy {
 
     @Override
-    public <T extends Comparable<T>> void load(CustomList<T> list, EntityCreator creator, int entityCount) {
+    public <T extends Comparable<T>> void load(CustomList<T> list, EntityCreator creator) {
         System.out.println("Введите полный путь к файлу и его НАЗВАНИЕ.txt");
         Scanner scanner = new Scanner(System.in);
         String file = scanner.nextLine();

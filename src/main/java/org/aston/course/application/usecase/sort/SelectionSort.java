@@ -1,13 +1,14 @@
-package org.aston.course.domain.business.sort;
+package org.aston.course.application.usecase.sort;
 
 import org.aston.course.application.datasource.CustomList;
 import org.aston.course.domain.model.SomeEntity;
+import org.aston.course.domain.model.Sort;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectionSort {
+public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
 
 //    public static <T extends Comparable<T>> void sort(List<T> list, String paramName) throws NoSuchFieldException {
 //        for (int i = 0; i < list.size(); i++) {
@@ -24,8 +25,8 @@ public class SelectionSort {
 //            list.set(i, min);
 //        }
 //    }
-
-    public static <T extends Comparable<T>> void sort(CustomList<T> list) {
+    @Override
+    public void sort(CustomList<T> list) {
         for (int i = 0; i < list.size(); i++) {
             int pos = i;
             T min = list.get(i);
