@@ -2,9 +2,7 @@ package org.aston.course.application.datasource;
 
 import org.aston.course.domain.model.SomeEntity;
 
-import java.util.Objects;
-
-public class Bus implements SomeEntity, Comparable<Bus> {
+public class Bus implements SomeEntity<Bus> {
 
     private final int number;
     private final String model;
@@ -55,6 +53,11 @@ public class Bus implements SomeEntity, Comparable<Bus> {
         int numberComparing = Integer.compare(this.number, otherBus.getNumber());
         int andModelComparing = numberComparing == 0 ? this.model.toLowerCase().compareTo(otherBus.getModel().toLowerCase()) : numberComparing;
         return andModelComparing == 0 ? Integer.compare(this.mileage, otherBus.getMileage()) : andModelComparing;
+    }
+
+    @Override
+    public boolean isEvenNumber() {
+        return (number % 2) == 0;
     }
 
     public static class BusBuilder {

@@ -4,7 +4,7 @@ import org.aston.course.domain.model.SomeEntity;
 
 import java.math.BigDecimal;
 
-public class Student implements SomeEntity, Comparable<Student> {
+public class Student implements SomeEntity <Student> {
 
     private final int groupNumber;
     private final double averageScore;
@@ -55,6 +55,11 @@ public class Student implements SomeEntity, Comparable<Student> {
         int groupComparing = Integer.compare(this.groupNumber, otherStudent.getGroupNumber());
         int andGradebookComparing = groupComparing == 0 ? Integer.compare(this.gradebookNumber, otherStudent.getGroupNumber()) : groupComparing;
         return andGradebookComparing == 0 ? new BigDecimal(this.averageScore).compareTo(new BigDecimal(otherStudent.getAverageScore())) : andGradebookComparing;
+    }
+
+    @Override
+    public boolean isEvenNumber() {
+        return (groupNumber % 2) == 0;
     }
 
     public static class StudentBuilder {

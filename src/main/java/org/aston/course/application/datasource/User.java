@@ -4,7 +4,7 @@ import org.aston.course.domain.model.SomeEntity;
 
 import java.math.BigDecimal;
 
-public class User implements SomeEntity, Comparable<User> {
+public class User implements SomeEntity <User> {
 
     private final String name;
     private final String password;
@@ -55,6 +55,11 @@ public class User implements SomeEntity, Comparable<User> {
         int nameComparing = this.name.toLowerCase().compareTo(otherUser.getName().toLowerCase());
         int andEmailComparing = nameComparing == 0 ? this.email.toLowerCase().compareTo(otherUser.getEmail().toLowerCase()) : nameComparing;
         return andEmailComparing == 0 ? this.password.toLowerCase().compareTo(otherUser.getPassword().toLowerCase()) : andEmailComparing;
+    }
+
+    @Override
+    public boolean isEvenNumber() {
+        return false;
     }
 
     public static class UserBuilder {
