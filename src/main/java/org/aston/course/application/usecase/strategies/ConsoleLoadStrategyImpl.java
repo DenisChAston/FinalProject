@@ -11,7 +11,7 @@ public class ConsoleLoadStrategyImpl implements LoadStrategy {
     @Override
     public <T extends Comparable<T>> void load(CustomList<T> list, EntityCreator creator) {
         Scanner scanner = new Scanner(System.in);
-        for (int i = 1; i <= list.size(); i++) {
+        for (int i = 1; i <= list.getCapasity(); i++) {
             System.out.printf("Введите %s %d\n", creator.getFirstParamName(), i);
             String f = scanner.next();
             System.out.printf("Введите %s %d\n", creator.getSecondParamName(), i);

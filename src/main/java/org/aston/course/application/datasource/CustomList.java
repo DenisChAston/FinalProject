@@ -7,15 +7,19 @@ public class CustomList<T extends Comparable<T>> {
 
 
     private final List<T> list;
-    private int size;
+    private final int capasity;
 
-    public CustomList(int size) {
+    public CustomList(int capacity) {
         list = new ArrayList<>();
-        this.size = size;
+        this.capasity = capacity;
     }
 
     public int size() {
-        return size;
+        return list.size();
+    }
+
+    public int getCapasity() {
+        return capasity;
     }
 
     public void set(int index, T e) {
@@ -24,7 +28,6 @@ public class CustomList<T extends Comparable<T>> {
 
     public void add(T e) {
         list.add(e);
-        size = list.size();
     }
 
     public T get(int index) {

@@ -19,7 +19,7 @@ public class FileLoadStrategyImpl implements LoadStrategy {
         String file = reader.readLine();
         List<String> temp = Files.readAllLines(Path.of(file));
 
-        int count = Math.min(temp.size(), list.size());
+        int count = Math.min(temp.size(), list.getCapasity());
 
         for (int i = 0; i < count; i++) {
             String[] params = temp.get(i).split(" ");

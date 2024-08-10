@@ -8,6 +8,9 @@ public class RandomLoadStrategyImpl implements LoadStrategy {
 
     @Override
     public <T extends Comparable<T>> void load(CustomList<T> list, EntityCreator creator) {
-
+        for (int i = 0; i < list.getCapasity(); i++) {
+            T t = creator.random();
+            list.add(t);
+        }
     }
 }
