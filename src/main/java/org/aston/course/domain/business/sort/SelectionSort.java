@@ -1,5 +1,6 @@
 package org.aston.course.domain.business.sort;
 
+import org.aston.course.application.datasource.CustomList;
 import org.aston.course.domain.model.SomeEntity;
 
 import java.lang.reflect.Field;
@@ -24,7 +25,7 @@ public class SelectionSort {
 //        }
 //    }
 
-    public static <T extends Comparable<T>> void sort(List<T> list) {
+    public static <T extends Comparable<T>> void sort(CustomList<T> list) {
         for (int i = 0; i < list.size(); i++) {
             int pos = i;
             T min = list.get(i);

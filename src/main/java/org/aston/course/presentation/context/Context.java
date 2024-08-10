@@ -34,7 +34,9 @@ public class Context<T extends Comparable<T>> {
     public boolean startApp() throws IOException {
         String userInput = "";
         //List<SomeEntity> list = new ArrayList<>();
-        CustomList<T> list = new CustomList<>();
+        CustomList<T> list = new CustomList<>(listCapacity);
+
+        SelectionSort.sort(list);
 
         loadStrategy.load(list, createStrategy, listCapacity);
         System.out.println(list);

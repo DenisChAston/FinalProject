@@ -7,9 +7,27 @@ public class CustomList<T extends Comparable<T>> {
 
 
     private final List<T> list;
+    private final int size;
 
-    public CustomList() {
+    public CustomList(int size) {
         list = new ArrayList<>();
+        this.size = size;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public void set(int index, T e) {
+        list.set(index, e);
+    }
+
+    public void add(T e) {
+        list.add(e);
+    }
+
+    public T get(int index) {
+        return list.get(index);
     }
 
     public void sort() {
@@ -32,7 +50,5 @@ public class CustomList<T extends Comparable<T>> {
 
     }
 
-    public void add(T entity) {
-        list.add(entity);
-    }
+
 }
