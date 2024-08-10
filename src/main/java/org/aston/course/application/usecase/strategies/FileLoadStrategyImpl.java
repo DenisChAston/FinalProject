@@ -1,5 +1,6 @@
 package org.aston.course.application.usecase.strategies;
 
+import org.aston.course.application.datasource.CustomList;
 import org.aston.course.domain.model.SomeEntity;
 import org.aston.course.domain.application.LoadStrategy;
 import org.aston.course.domain.business.EntityCreator;
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class FileLoadStrategyImpl implements LoadStrategy {
 
     @Override
-    public <T extends SomeEntity> void load(List<? super T> list, EntityCreator<T> creator, int entityCount) {
+    public <T extends Comparable<T>> void load(CustomList<T> list, EntityCreator creator, int entityCount) {
         System.out.println("Введите полный путь к файлу и его НАЗВАНИЕ.txt");
         Scanner scanner = new Scanner(System.in);
         String file = scanner.nextLine();
@@ -31,7 +32,7 @@ public class FileLoadStrategyImpl implements LoadStrategy {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            String lineName[];
+            String[] lineName;
             try {
                 lineName = br.readLine().split(" ");
             } catch (IOException e) {

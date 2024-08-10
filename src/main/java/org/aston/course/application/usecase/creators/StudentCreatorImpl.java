@@ -3,7 +3,7 @@ package org.aston.course.application.usecase.creators;
 import org.aston.course.application.datasource.Student;
 import org.aston.course.domain.business.EntityCreator;
 
-public class StudentCreatorImpl implements EntityCreator<Student> {
+public class StudentCreatorImpl implements EntityCreator {
 
     @Override
     public Student create(String groupNumber, String averageScore, String gradebookNumber) {

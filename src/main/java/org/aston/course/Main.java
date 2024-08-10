@@ -1,6 +1,8 @@
 package org.aston.course;
 
 
+import org.aston.course.application.datasource.Bus;
+import org.aston.course.application.datasource.User;
 import org.aston.course.application.usecase.creators.BusCreatorImpl;
 import org.aston.course.application.usecase.creators.StudentCreatorImpl;
 import org.aston.course.application.usecase.creators.UserCreatorImpl;
@@ -25,7 +27,7 @@ import java.util.Map;
 public class Main {
 
     private static final Map<String, LoadStrategy> LOAD_STRATEGY_MAP = new HashMap<>();;
-    private static final Map<String, EntityCreator<? extends SomeEntity>> CREATE_STRATEGY_MAP = new HashMap<>();
+    private static final Map<String, EntityCreator> CREATE_STRATEGY_MAP = new HashMap<>();
     private static boolean END_OF_PROGRAM = false;
 
 
@@ -34,7 +36,7 @@ public class Main {
         initStrategy();
         String userInput = "";
         LoadStrategy loadStrategy = null;
-        EntityCreator<? extends SomeEntity> createStrategy = null;
+        EntityCreator createStrategy = null;
 
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in))) {
             while (!END_OF_PROGRAM) {
@@ -67,8 +69,11 @@ public class Main {
                 System.out.println("\nУкажите количество объектов:");
                 int capacity = Integer.parseInt(reader.readLine());
 
-                Context c = new Context(loadStrategy, createStrategy, reader, capacity);
-                END_OF_PROGRAM = c.startApp();
+                Context<User> busCont = new Context<>(loadStrategy, createStrategy, reader, capacity);
+
+
+                //Context c = new Context(loadStrategy, createStrategy, reader, capacity);
+                END_OF_PROGRAM = busCont.startApp();
             }
         } catch (IOException e) {
             System.out.println("exc");
@@ -83,7 +88,7 @@ public class Main {
         LOAD_STRATEGY_MAP.put("3", new RandomLoadStrategyImpl());
 
         CREATE_STRATEGY_MAP.put("1", new BusCreatorImpl());
-        CREATE_STRATEGY_MAP.put("2", new StudentCreatorImpl());
-        CREATE_STRATEGY_MAP.put("3", new UserCreatorImpl());
+        CREATE_STRATEGY_MAP.put("2", new UserCreatorImpl());
+        CREATE_STRATEGY_MAP.put("3", new StudentCreatorImpl());
     }
 }
