@@ -1,6 +1,7 @@
 package org.aston.course.application.usecase.creators;
 
 import org.aston.course.application.datasource.Bus;
+import org.aston.course.application.usecase.enums.BusModelNames;
 import org.aston.course.domain.business.EntityCreator;
 
 import java.util.Random;
@@ -10,7 +11,7 @@ public class BusCreatorImpl implements EntityCreator<Bus> {
     private final Bus bus = new Bus.BusBuilder().build();
 
     private final Random rnd = new Random();
-    private static final String[] model = {"Kamaz", "Maz", "Liaz"};
+    private static final BusModelNames[] MODELS = BusModelNames.values();
 
     @Override
     public Bus create(String number, String model, String thirdParam) {
@@ -21,7 +22,7 @@ public class BusCreatorImpl implements EntityCreator<Bus> {
 
     @Override
     public Bus random() {
-        return create(String.valueOf(rnd.nextInt(100)), model[rnd.nextInt(model.length)], String.valueOf(rnd.nextInt(10000)));
+        return create(String.valueOf(rnd.nextInt(100)), String.valueOf(MODELS[rnd.nextInt(MODELS.length)]), String.valueOf(rnd.nextInt(10000)));
     }
 
     @Override
