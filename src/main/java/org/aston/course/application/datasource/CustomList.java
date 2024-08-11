@@ -3,34 +3,34 @@ package org.aston.course.application.datasource;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomList<T extends Comparable<T>> {
+public class CustomList<E extends Comparable<E>> {
 
 
-    private final List<T> list;
-    private final int capasity;
+    private final List<E> list;
+    private final int capacity;
 
     public CustomList(int capacity) {
         list = new ArrayList<>();
-        this.capasity = capacity;
+        this.capacity = capacity;
     }
 
     public int size() {
         return list.size();
     }
 
-    public int getCapasity() {
-        return capasity;
+    public int getCapacity() {
+        return capacity;
     }
 
-    public void set(int index, T e) {
+    public void set(int index, E e) {
         list.set(index, e);
     }
 
-    public void add(T e) {
+    public void add(E e) {
         list.add(e);
     }
 
-    public T get(int index) {
+    public E get(int index) {
         return list.get(index);
     }
 
@@ -38,26 +38,4 @@ public class CustomList<T extends Comparable<T>> {
     public String toString() {
         return list.toString();
     }
-
-    /*    public void sort() {
-        for (int i = 0; i < list.size(); i++) {
-            int pos = i;
-            T min = list.get(i);
-            for (int j = i + 1; j < list.size(); j++) {
-                // Нужно чтобы здесь я мог вызывать один из трех методов для сравнения выбранного поля
-                if (list.get(j).compareTo(min) < 0) {
-                    pos = j;
-                    min = list.get(j);
-                }
-            }
-            list.set(pos, list.get(i));
-            list.set(i, min);
-        }
-    }
-
-    public void binarySearch(T entity) {
-
-    }*/
-
-
 }

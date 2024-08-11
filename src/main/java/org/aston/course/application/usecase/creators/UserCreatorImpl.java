@@ -16,7 +16,6 @@ public class UserCreatorImpl implements EntityCreator {
     private final Random rnd = new Random();
 
 
-
     @Override
     public User create(String name, String password, String thirdParam) {
         return new User.UserBuilder().setName(name).setPassword(password).setEmail(thirdParam).build();

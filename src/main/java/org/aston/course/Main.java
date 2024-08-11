@@ -79,6 +79,9 @@ public class Main {
                     Context<User> busCont = new Context<>(typeOfEntity, loadStrategy, reader, capacity);
                     END_OF_PROGRAM = busCont.startApp();
                 }
+
+                Context<?> con = new Context<User>(typeOfEntity, loadStrategy, reader, capacity);
+                con.startApp();
             }
         } catch (IOException e) {
             System.out.println("exc");

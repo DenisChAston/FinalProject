@@ -8,7 +8,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Scanner;
 
 public class FileLoadStrategyImpl implements LoadStrategy {
 
@@ -19,7 +18,7 @@ public class FileLoadStrategyImpl implements LoadStrategy {
         String file = reader.readLine();
         List<String> temp = Files.readAllLines(Path.of(file));
 
-        int count = Math.min(temp.size(), list.getCapasity());
+        int count = Math.min(temp.size(), list.getCapacity());
 
         for (int i = 0; i < count; i++) {
             String[] params = temp.get(i).split(" ");
