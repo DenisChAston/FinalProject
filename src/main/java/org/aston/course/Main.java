@@ -57,16 +57,6 @@ public class Main {
                     }
                 }
 
-/*                if (userInput.equals("4")) {
-                    END_OF_PROGRAM = true;
-                    continue;
-                } else if (userInput.equals("1") || userInput.equals("2") || userInput.equals("3")) {
-                    typeOfEntity = userInput;
-                } else {
-                    System.out.println("Введите цифру в диапазоне!");
-                    continue;
-                }*/
-
                 System.out.println("\nВыбирете стратегию заполнения списка:\n1.Из файла\n2.Вручную\n3.Случайно\n4.Выход");
                 userInput = reader.readLine();
                 switch (userInput) {
