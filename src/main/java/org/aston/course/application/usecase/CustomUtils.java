@@ -2,7 +2,7 @@ package org.aston.course.application.usecase;
 
 import org.aston.course.application.datasource.CustomList;
 import org.aston.course.domain.model.SomeEntity;
-import org.aston.course.domain.model.Sort;
+import org.aston.course.domain.business.Sort;
 
 import java.util.Comparator;
 

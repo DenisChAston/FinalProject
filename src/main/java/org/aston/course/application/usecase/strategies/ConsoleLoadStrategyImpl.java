@@ -2,13 +2,12 @@ package org.aston.course.application.usecase.strategies;
 
 import org.aston.course.application.datasource.CustomList;
 import org.aston.course.domain.application.LoadStrategy;
-import org.aston.course.domain.model.EntityCreator;
+import org.aston.course.domain.business.EntityCreator;
 import org.aston.course.domain.model.SomeEntity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Scanner;
 
 public class ConsoleLoadStrategyImpl implements LoadStrategy {
 

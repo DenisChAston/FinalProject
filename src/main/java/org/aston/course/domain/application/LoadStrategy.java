@@ -1,7 +1,7 @@
 package org.aston.course.domain.application;
 
 import org.aston.course.application.datasource.CustomList;
-import org.aston.course.domain.model.EntityCreator;
+import org.aston.course.domain.business.EntityCreator;
 import org.aston.course.domain.model.SomeEntity;
 
 import java.io.IOException;

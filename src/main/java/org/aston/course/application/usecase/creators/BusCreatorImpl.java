@@ -1,7 +1,7 @@
 package org.aston.course.application.usecase.creators;
 
 import org.aston.course.application.datasource.Bus;
-import org.aston.course.domain.model.EntityCreator;
+import org.aston.course.domain.business.EntityCreator;
 
 import java.util.Random;
 

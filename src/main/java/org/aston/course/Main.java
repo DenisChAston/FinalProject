@@ -1,9 +1,6 @@
 package org.aston.course;
 
 
-import org.aston.course.application.datasource.Bus;
-import org.aston.course.application.datasource.Student;
-import org.aston.course.application.datasource.User;
 import org.aston.course.application.usecase.creators.BusCreatorImpl;
 import org.aston.course.application.usecase.creators.StudentCreatorImpl;
 import org.aston.course.application.usecase.creators.UserCreatorImpl;
@@ -11,7 +8,6 @@ import org.aston.course.application.usecase.strategies.ConsoleLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.FileLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.RandomLoadStrategyImpl;
 import org.aston.course.domain.application.LoadStrategy;
-import org.aston.course.domain.model.EntityCreator;
 import org.aston.course.domain.model.SomeEntity;
 import org.aston.course.presentation.context.Context;
 
@@ -27,7 +23,7 @@ import java.util.Map;
 
 public class Main {
 
-    private static final Map<String, LoadStrategy> LOAD_STRATEGY_MAP = new HashMap<>();;
+    private static final Map<String, LoadStrategy> LOAD_STRATEGY_MAP = new HashMap<>();
     private static boolean END_OF_PROGRAM = false;
 
     static {
