@@ -13,14 +13,14 @@ import org.aston.course.domain.model.SomeEntity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 public class SortContext {
 
 
-    public <T extends SomeEntity & Comparable<T>> void start(CustomList<T> list, Sort<T> sortType, BufferedReader reader) throws IOException {
+    public <T extends SomeEntity & Comparable<T>> void start(CustomList<T> list, Sort<T> sortType, BufferedReader reader, List<SomeComparator<T>> comparators) throws IOException {
         boolean isBack = false;
         String userInput = "";
-        SomeComparator<T> comparator = null;
 
         while (!isBack) {
             System.out.println("\nВыберете действие:\n1.Сортировка\n2.Сортировка четных\n3.Сортировка нечетных\n4.Назад");
@@ -33,12 +33,11 @@ public class SortContext {
                 }
                 case "2" -> {
                     System.out.println("Сортировка четных");
-                    comparator = getEvenNumberComparator(list);
-                    CustomUtils.sort(list, new SelectionSort<>(), comparator);
+                    CustomUtils.sort(list, new SelectionSort<>(), comparators.get(0));
                 }
                 case "3" -> {
                     System.out.println("Сортировка нечетных");
-                    //CustomUtils.sort(list, new SelectionSort<>());
+                    CustomUtils.sort(list, new SelectionSort<>(), comparators.get(1));
                 }
                 case "4" -> {
                     isBack = true;
@@ -46,17 +45,5 @@ public class SortContext {
                 default -> System.out.println("Введите цифру в диапазоне!");
             }
         }
-    }
-
-
-    public <T extends SomeEntity & Comparable<T>> SomeComparator<T> getEvenNumberComparator(CustomList<T> list) {
-        SomeComparator<T> someComparator = null;
-        if (list.size() != 0) {
-            if (list.get(0) instanceof Bus)
-                someComparator = (SomeComparator<T>) new BussEvenNumberComparatorImpl();
-            else if (list.get(0) instanceof Student)
-                someComparator = (SomeComparator<T>) new StudentEvenBussComparatorImpl();
-        }
-        return someComparator;
     }
 }

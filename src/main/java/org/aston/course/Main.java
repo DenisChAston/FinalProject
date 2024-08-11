@@ -2,6 +2,8 @@ package org.aston.course;
 
 
 import org.aston.course.application.datasource.Bus;
+import org.aston.course.application.datasource.Student;
+import org.aston.course.application.datasource.User;
 import org.aston.course.application.usecase.comparators.BussEvenNumberComparatorImpl;
 import org.aston.course.application.usecase.comparators.StudentEvenBussComparatorImpl;
 import org.aston.course.application.usecase.creators.BusCreatorImpl;
@@ -30,12 +32,19 @@ import java.util.Map;
 public class Main {
 
     private static final Map<String, LoadStrategy> LOAD_STRATEGY_MAP = new HashMap<>();
+    private static final List<SomeComparator<Bus>> BUS_COMPARATORS = new ArrayList<>();
+    private static final List<SomeComparator<Student>> STUDENT_COMPARATORS = new ArrayList<>();
+    private static final List<SomeComparator<User>> USER_COMPARATORS = new ArrayList<>();
+
     private static boolean END_OF_PROGRAM = false;
 
     static {
         LOAD_STRATEGY_MAP.put("1", new FileLoadStrategyImpl());
         LOAD_STRATEGY_MAP.put("2", new ConsoleLoadStrategyImpl());
         LOAD_STRATEGY_MAP.put("3", new RandomLoadStrategyImpl());
+
+        BUS_COMPARATORS.add(new BussEvenNumberComparatorImpl());
+        STUDENT_COMPARATORS.add(new StudentEvenBussComparatorImpl());
     }
 
     public static void main( String[] args ) throws IOException {
@@ -83,9 +92,9 @@ public class Main {
                 int capacity = Integer.parseInt(reader.readLine());
 
                 switch (typeOfEntity) {
-                    case "1" -> END_OF_PROGRAM = context.start(new BusCreatorImpl(), loadStrategy, reader, capacity);
-                    case "2" -> END_OF_PROGRAM = context.start(new UserCreatorImpl(), loadStrategy, reader, capacity);
-                    case "3" -> END_OF_PROGRAM = context.start(new StudentCreatorImpl(), loadStrategy, reader, capacity);
+                    case "1" -> END_OF_PROGRAM = context.start(new BusCreatorImpl(), loadStrategy, reader, capacity, BUS_COMPARATORS);
+                    case "2" -> END_OF_PROGRAM = context.start(new UserCreatorImpl(), loadStrategy, reader, capacity, USER_COMPARATORS);
+                    case "3" -> END_OF_PROGRAM = context.start(new StudentCreatorImpl(), loadStrategy, reader, capacity, STUDENT_COMPARATORS);
                 }
             }
         } catch (IOException e) {

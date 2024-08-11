@@ -5,15 +5,17 @@ import org.aston.course.domain.application.LoadStrategy;
 import org.aston.course.application.usecase.CustomUtils;
 import org.aston.course.application.usecase.sort.SelectionSort;
 import org.aston.course.domain.business.EntityCreator;
+import org.aston.course.domain.business.SomeComparator;
 import org.aston.course.domain.model.SomeEntity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.List;
 
 public class MainContext {
 
     public <T extends Comparable<T> & SomeEntity> boolean start(EntityCreator<T> entityCreator, LoadStrategy loadStrategy, BufferedReader reader,
-                                                                int listCapacity) throws IOException {
+                                                                int listCapacity, List<SomeComparator<T>> comparators) throws IOException {
 
         boolean isBack = false;
         boolean isExit = false;
@@ -26,7 +28,7 @@ public class MainContext {
             userInput = reader.readLine();
             switch (userInput) {
                 case "1" -> {
-                    new SortContext().start(list, new SelectionSort<>(), reader);
+                    new SortContext().start(list, new SelectionSort<>(), reader, comparators);
                 }
                 case "2" -> {
                     if (!list.isListIsAlreadySort()) {
