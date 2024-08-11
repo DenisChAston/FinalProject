@@ -2,9 +2,7 @@ package org.aston.course.application.usecase.randoms;
 
 import org.aston.course.application.datasource.Student;
 import org.aston.course.application.datasource.User;
-import org.aston.course.application.usecase.Enum.BusName;
-import org.aston.course.application.usecase.Enum.PassEnum;
-import org.aston.course.application.usecase.Enum.UserName;
+import org.aston.course.application.usecase.Enum.*;
 import org.aston.course.domain.business.EntityCreator;
 import org.aston.course.domain.application.GeneratorStrategy;
 
@@ -14,7 +12,7 @@ public class UserRandomImpl implements GeneratorStrategy<User> {
 
     @Override
     public User generator(EntityCreator<User> creator) {
-        User temp = creator.create(name(), password(), "енгшщ");
+        User temp = creator.create(name(), password(), email());
         return temp;
     }
 
@@ -27,11 +25,24 @@ public class UserRandomImpl implements GeneratorStrategy<User> {
     private String password() {
         PassEnum[] name = PassEnum.values();
         StringBuilder builder = new StringBuilder();
-        for (int i = 10; i != 0; ) {
+        for (int i = 10; i != 0; i--) {
             int randomChar = ThreadLocalRandom.current().nextInt(1, PassEnum.values().length);
             builder.append(name[randomChar]);
-            i--;
         }
+        return builder.toString();
+    }
+
+    private String email() {
+    int randUsEmailName = ThreadLocalRandom.current().nextInt(1, UserEmailName.values().length);
+        int randUsEmailAppend = ThreadLocalRandom.current().nextInt(1, UserEmailName.values().length);
+        int randUsEmailDom = ThreadLocalRandom.current().nextInt(1, UserEmailDomain.values().length);
+        StringBuilder builder = new StringBuilder();
+        UserEmailName [] names = UserEmailName.values();
+        UserEmailNameAppend [] appends =UserEmailNameAppend.values();
+        UserEmailDomain [] domains = UserEmailDomain.values();
+        builder = builder.append(names[randUsEmailName]).append("@")
+                .append(appends[randUsEmailAppend]).append(".")
+                .append(domains[randUsEmailDom]);
         return builder.toString();
     }
 }

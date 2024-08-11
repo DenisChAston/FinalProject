@@ -25,7 +25,6 @@ public class RandomLoadStrategyImpl implements LoadStrategy, GeneratorStrategy {
             System.out.println("Введите количество объектов");
             int count = Integer.parseInt(reader.readLine());
             while (count > 0) {
-                if (!reader.ready()) break;
                 T temp = (T) generator(creator);
                 list.add(temp);
                 count--;
