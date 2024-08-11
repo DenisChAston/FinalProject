@@ -1,12 +1,15 @@
 package org.aston.course.application.usecase.creators;
 
 
+import org.aston.course.application.datasource.Student;
 import org.aston.course.application.datasource.User;
 import org.aston.course.domain.model.EntityCreator;
 
 import java.util.Random;
 
-public class UserCreatorImpl implements EntityCreator {
+public class UserCreatorImpl implements EntityCreator<User> {
+
+    private final User user = new User.UserBuilder().build();
 
     public static final String upCharsRus = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
     private static final String lowCharsRus = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
@@ -14,7 +17,6 @@ public class UserCreatorImpl implements EntityCreator {
     private static final String lowCharsUk = "abcdefghijklmnopqrstuvwxyz";
     private static final String[] emails = {"@mail.ru", "@yandex.ru", "@gmail.com"};
     private final Random rnd = new Random();
-
 
     @Override
     public User create(String name, String password, String thirdParam) {
@@ -59,16 +61,16 @@ public class UserCreatorImpl implements EntityCreator {
 
     @Override
     public String getFirstParamName() {
-        return "имя пользователя";
+        return user.getFirstParam();
     }
 
     @Override
     public String getSecondParamName() {
-        return "пароль пользователя";
+        return user.getSecondParam();
     }
 
     @Override
     public String getThirdParamName() {
-        return "email пользователя";
+        return user.getThirdParam();
     }
 }

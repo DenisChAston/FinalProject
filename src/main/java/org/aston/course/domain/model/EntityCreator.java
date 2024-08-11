@@ -1,10 +1,10 @@
 package org.aston.course.domain.model;
 
-public interface EntityCreator {
+public interface EntityCreator<T extends SomeEntity> {
 
-    <T> T create(String firstParam, String secondParam, String thirdParam);
+    T create(String firstParam, String secondParam, String thirdParam);
 
-    <T> T random();
+    T random();
 
     String getFirstParamName();
     String getSecondParamName();

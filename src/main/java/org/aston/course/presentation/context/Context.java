@@ -1,30 +1,26 @@
 package org.aston.course.presentation.context;
 
 import org.aston.course.application.datasource.CustomList;
-import org.aston.course.application.usecase.creators.BusCreatorImpl;
-import org.aston.course.application.usecase.creators.StudentCreatorImpl;
-import org.aston.course.application.usecase.creators.UserCreatorImpl;
 import org.aston.course.domain.application.LoadStrategy;
 import org.aston.course.application.usecase.CustomUtils;
 import org.aston.course.application.usecase.sort.SelectionSort;
 import org.aston.course.domain.model.EntityCreator;
+import org.aston.course.domain.model.SomeEntity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
-public class Context<T extends Comparable<T>> {
+public class Context<T extends Comparable<T> & SomeEntity> {
 
     private final LoadStrategy loadStrategy;
-    private final EntityCreator entityCreator;
+    private final EntityCreator<T> entityCreator;
     private final BufferedReader reader;
     private boolean endOfProgram = false;
     private boolean endOfLocalProgram = false;
     private final int listCapacity;
     private boolean listIsAlreadySort = false;
 
-    public Context(EntityCreator entityCreator, LoadStrategy loadStrategy, BufferedReader reader, int listCapacity) {
+    public Context(EntityCreator<T> entityCreator, LoadStrategy loadStrategy, BufferedReader reader, int listCapacity) {
         this.loadStrategy = loadStrategy;
         this.entityCreator = entityCreator;
         this.reader = reader;

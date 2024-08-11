@@ -57,6 +57,21 @@ public class Bus implements SomeEntity, Comparable<Bus> {
         return andModelComparing == 0 ? Integer.compare(this.mileage, otherBus.getMileage()) : andModelComparing;
     }
 
+    @Override
+    public String getFirstParam() {
+        return "номер автобуса";
+    }
+
+    @Override
+    public String getSecondParam() {
+        return "модель автобуса";
+    }
+
+    @Override
+    public String getThirdParam() {
+        return "пробег автобуса";
+    }
+
     public static class BusBuilder {
 
         private int number;

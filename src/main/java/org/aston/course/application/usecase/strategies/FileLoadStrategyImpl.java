@@ -3,6 +3,7 @@ package org.aston.course.application.usecase.strategies;
 import org.aston.course.application.datasource.CustomList;
 import org.aston.course.domain.application.LoadStrategy;
 import org.aston.course.domain.model.EntityCreator;
+import org.aston.course.domain.model.SomeEntity;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -12,7 +13,7 @@ import java.util.List;
 public class FileLoadStrategyImpl implements LoadStrategy {
 
     @Override
-    public <T extends Comparable<T>> void load(CustomList<T> list, EntityCreator creator) throws IOException {
+    public <T extends Comparable<T> & SomeEntity> void load(CustomList<T> list, EntityCreator<T> creator) throws IOException {
         System.out.println("Введите полный путь к файлу и его НАЗВАНИЕ.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String file = reader.readLine();

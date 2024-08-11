@@ -57,6 +57,21 @@ public class User implements SomeEntity, Comparable<User> {
         return andEmailComparing == 0 ? this.password.toLowerCase().compareTo(otherUser.getPassword().toLowerCase()) : andEmailComparing;
     }
 
+    @Override
+    public String getFirstParam() {
+        return "имя пользователя";
+    }
+
+    @Override
+    public String getSecondParam() {
+        return "пароль пользователя";
+    }
+
+    @Override
+    public String getThirdParam() {
+        return "email пользователя";
+    }
+
     public static class UserBuilder {
         private String name;
         private String password;

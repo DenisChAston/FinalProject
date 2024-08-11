@@ -57,6 +57,21 @@ public class Student implements SomeEntity, Comparable<Student> {
         return andGradebookComparing == 0 ? new BigDecimal(this.averageScore).compareTo(new BigDecimal(otherStudent.getAverageScore())) : andGradebookComparing;
     }
 
+    @Override
+    public String getFirstParam() {
+        return "номер группы студента";
+    }
+
+    @Override
+    public String getSecondParam() {
+        return "средний балл студента";
+    }
+
+    @Override
+    public String getThirdParam() {
+        return "номер зачетной книжки студента";
+    }
+
     public static class StudentBuilder {
         private int groupNumber;
         private double averageScore;

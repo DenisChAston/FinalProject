@@ -1,9 +1,11 @@
 package org.aston.course.application.datasource;
 
+import org.aston.course.domain.model.SomeEntity;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomList<E extends Comparable<E>> {
+public class CustomList<E extends Comparable<E> & SomeEntity> {
 
 
     private final List<E> list;

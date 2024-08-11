@@ -1,11 +1,12 @@
 package org.aston.course.application.usecase.sort;
 
 import org.aston.course.application.datasource.CustomList;
+import org.aston.course.domain.model.SomeEntity;
 import org.aston.course.domain.model.Sort;
 
 import java.util.Comparator;
 
-public class SelectionSort<T extends Comparable<T>> implements Sort<T> {
+public class SelectionSort<T extends Comparable<T> & SomeEntity> implements Sort<T> {
 
 //    public static <T extends Comparable<T>> void sort(List<T> list, String paramName) throws NoSuchFieldException {
 //        for (int i = 0; i < list.size(); i++) {
