@@ -16,25 +16,17 @@ import java.util.Map;
 
 public class Context<T extends Comparable<T>> {
 
-    private static final Map<Integer, EntityCreator> CREATE_STRATEGY_MAP = new HashMap<>();
-    private final int typeOfEntity;
-
     private final LoadStrategy loadStrategy;
+    private final EntityCreator entityCreator;
     private final BufferedReader reader;
     private boolean endOfProgram = false;
     private boolean endOfLocalProgram = false;
     private final int listCapacity;
     private boolean listIsAlreadySort = false;
 
-    static {
-        CREATE_STRATEGY_MAP.put(1, new BusCreatorImpl());
-        CREATE_STRATEGY_MAP.put(2, new UserCreatorImpl());
-        CREATE_STRATEGY_MAP.put(3, new StudentCreatorImpl());
-    }
-
-    public Context(int typeOfEntity, LoadStrategy loadStrategy, BufferedReader reader, int listCapacity) {
-        this.typeOfEntity = typeOfEntity;
+    public Context(EntityCreator entityCreator, LoadStrategy loadStrategy, BufferedReader reader, int listCapacity) {
         this.loadStrategy = loadStrategy;
+        this.entityCreator = entityCreator;
         this.reader = reader;
         this.listCapacity = listCapacity;
     }
@@ -42,7 +34,7 @@ public class Context<T extends Comparable<T>> {
     public boolean startApp() throws IOException {
         String userInput = "";
         CustomList<T> list = new CustomList<>(listCapacity);
-        loadStrategy.load(list, CREATE_STRATEGY_MAP.get(typeOfEntity));
+        loadStrategy.load(list, entityCreator);
 
         while (!endOfLocalProgram) {
             System.out.println("Выберете действие:\n1.Сортировка\n2.Поиск объекта\n3.Печать списка\n4.Назад\n5.Выход");
