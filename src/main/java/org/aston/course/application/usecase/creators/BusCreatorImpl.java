@@ -21,7 +21,7 @@ public class BusCreatorImpl implements EntityCreator<Bus> {
 
     @Override
     public Bus random() {
-        return create(String.valueOf(rnd.nextInt(100)), model[rnd.nextInt(model.length)-1], String.valueOf(rnd.nextInt(10001)-1));
+        return create(String.valueOf(rnd.nextInt(100)), model[rnd.nextInt(model.length)], String.valueOf(rnd.nextInt(10000)));
     }
 
     @Override

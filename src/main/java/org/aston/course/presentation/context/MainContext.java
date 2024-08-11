@@ -10,39 +10,28 @@ import org.aston.course.domain.model.SomeEntity;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class Context<T extends Comparable<T> & SomeEntity> {
+public class MainContext {
 
-    private final LoadStrategy loadStrategy;
-    private final EntityCreator<T> entityCreator;
-    private final BufferedReader reader;
-    private boolean endOfProgram = false;
-    private boolean endOfLocalProgram = false;
-    private final int listCapacity;
-    private boolean listIsAlreadySort = false;
+    public <T extends Comparable<T> & SomeEntity> boolean start(EntityCreator<T> entityCreator, LoadStrategy loadStrategy, BufferedReader reader,
+                                                                int listCapacity) throws IOException {
 
-    public Context(EntityCreator<T> entityCreator, LoadStrategy loadStrategy, BufferedReader reader, int listCapacity) {
-        this.loadStrategy = loadStrategy;
-        this.entityCreator = entityCreator;
-        this.reader = reader;
-        this.listCapacity = listCapacity;
-    }
-
-    public boolean startApp() throws IOException {
+        boolean isBack = false;
+        boolean isExit = false;
         String userInput = "";
         CustomList<T> list = new CustomList<>(listCapacity);
         loadStrategy.load(list, entityCreator);
 
-        while (!endOfLocalProgram) {
-            System.out.println("Выберете действие:\n1.Сортировка\n2.Поиск объекта\n3.Печать списка\n4.Назад\n5.Выход");
+        while (!isBack) {
+            System.out.println("\nВыберете действие:\n1.Сортировка\n2.Поиск объекта\n3.Печать списка\n4.Назад\n5.Выход");
             userInput = reader.readLine();
             switch (userInput) {
                 case "1" -> {
-                    CustomUtils.sort(list, new SelectionSort<>());
-                    listIsAlreadySort = true;
+                    new SortContext().start(list, new SelectionSort<>(), reader);
                 }
                 case "2" -> {
-                    if (!listIsAlreadySort) {
+                    if (!list.isListIsAlreadySort()) {
                         CustomUtils.sort(list, new SelectionSort<>());
+                        System.out.println("Выполнена сортировка");
                     }
                     //list.binarySearch();
                     //сделать вызов метода поиска;
@@ -52,17 +41,16 @@ public class Context<T extends Comparable<T> & SomeEntity> {
                     //вызов метода печати списка
                 }
                 case "4" -> {
-                    endOfProgram = false;
-                    endOfLocalProgram = true;
+                    isBack = true;
                 }
                 case "5" -> {
-                    endOfProgram = true;
-                    endOfLocalProgram = true;
+                    isBack = true;
+                    isExit = true;
                 }
                 default -> System.out.println("Введите цифру в диапазоне!");
             }
         }
-        return endOfProgram;
+        return isExit;
     }
 }
 

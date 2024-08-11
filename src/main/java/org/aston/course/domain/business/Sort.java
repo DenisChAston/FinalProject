@@ -5,7 +5,7 @@ import org.aston.course.domain.model.SomeEntity;
 
 import java.util.Comparator;
 
-public interface Sort<T extends Comparable<T> & SomeEntity> {
+public interface Sort<T extends SomeEntity & Comparable<T>> {
 
     void sort(CustomList<T> list);
 

@@ -13,7 +13,7 @@ public class CustomUtils {
     }
 
     public static <T extends Comparable<T> & SomeEntity> void sort(CustomList<T> customList, Sort<T> sort, Comparator<T> comparator) {
-        //sort.sort(customList, comparator);
+        sort.sort(customList, comparator);
     }
 
     public static <T extends Comparable<T> & SomeEntity> int binarySearch(CustomList<T> customList, T t) {

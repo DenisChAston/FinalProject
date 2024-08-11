@@ -10,6 +10,9 @@ public class CustomList<E extends Comparable<E> & SomeEntity> {
 
     private final List<E> list;
     private final int capacity;
+    private boolean listIsAlreadySort;
+
+
 
     public CustomList(int capacity) {
         list = new ArrayList<>();
@@ -34,6 +37,14 @@ public class CustomList<E extends Comparable<E> & SomeEntity> {
 
     public E get(int index) {
         return list.get(index);
+    }
+
+    public boolean isListIsAlreadySort() {
+        return listIsAlreadySort;
+    }
+
+    public void setListIsAlreadySort(boolean listIsAlreadySort) {
+        this.listIsAlreadySort = listIsAlreadySort;
     }
 
     @Override

@@ -1,11 +1,9 @@
 package org.aston.course.application.usecase.comparators;
 
 import org.aston.course.application.datasource.Bus;
-import org.aston.course.domain.business.EvenNumberComparator;
+import org.aston.course.domain.business.SomeComparator;
 
-import java.util.Comparator;
-
-public class BussEvenNumberComparatorImpl implements Comparator<Bus>, EvenNumberComparator {
+public class BussEvenNumberComparatorImpl implements SomeComparator<Bus> {
 
     @Override
     public int compare(Bus thisBus, Bus otherBus) {

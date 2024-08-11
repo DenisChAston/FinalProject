@@ -1,11 +1,9 @@
 package org.aston.course.application.usecase.comparators;
 
 import org.aston.course.application.datasource.Student;
-import org.aston.course.domain.business.EvenNumberComparator;
+import org.aston.course.domain.business.SomeComparator;
 
-import java.util.Comparator;
-
-public class StudentEvenNumberComparatorImpl implements Comparator<Student>, EvenNumberComparator {
+public class StudentEvenBussComparatorImpl implements SomeComparator<Student> {
 
     @Override
     public int compare(Student thisStudent, Student otherStudent) {
