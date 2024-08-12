@@ -4,7 +4,7 @@ import java.util.List;
 
 
 public class BinarySearch {
-    //Метод возвращает индекс искомой строкиы
+    //Метод возвращает индекс искомой строки
     public static int binarySearch(List<String> list, String s){
         int min, max, mid;
         min = 0;
