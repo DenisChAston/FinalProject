@@ -40,10 +40,11 @@ public class MainContext {
                         System.out.println("Выполнена сортировка");
                     }
                     BinarySearchContext binarySearchContext = new BinarySearchContext();
-                    Optional<T> someEntity = binarySearchContext.start(list, entityCreator, reader);
+                    Optional<T> resultEntity = binarySearchContext.start(list, entityCreator, reader);
                     T foundObject = null;
-                    if (someEntity.isPresent()) {
-                        foundObject = someEntity.get();
+                    if (resultEntity.isPresent()) {
+                        foundObject = resultEntity.get();
+                        System.out.println("Найден объект - " + foundObject);
                     } else {
                         System.out.println("Объект не найден");
                     }

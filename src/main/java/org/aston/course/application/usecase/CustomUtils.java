@@ -17,8 +17,26 @@ public class CustomUtils {
         sort.sort(customList, comparator);
     }
 
-    public static <T extends Comparable<T> & SomeEntity> Optional<T> binarySearch(CustomList<T> customList, T t) {
-        return Optional.of(t) ;
+    public static <T extends Comparable<T> & SomeEntity> Optional<T> binarySearch(CustomList<T> customList, T desiredObject) {
+
+        int min, max, mid;
+        min = 0;
+        max = customList.size()-1;
+        Optional<T> foundObject = Optional.empty();
+
+        while(min <= max) {
+            mid = min + (max - 1) / 2;
+            int res = desiredObject.compareTo(customList.get(mid));
+            if (res == 0) {
+                foundObject = Optional.of(customList.get(mid));
+                break;
+            } else if (res > 0) {
+                min = mid + 1;
+            } else {
+                max = mid - 1;
+            }
+        }
+        return foundObject;
     }
 
     public static <T extends Comparable<T> & SomeEntity> void print(CustomList<T> customList) {
