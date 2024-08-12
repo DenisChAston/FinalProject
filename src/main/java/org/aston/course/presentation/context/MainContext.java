@@ -23,12 +23,12 @@ public class MainContext {
         loadStrategy.load(list, entityCreator);
 
         while (true) {
-            System.out.println("\nВыберете действие:\n" +
-                                        "1.Сортировка\n" +
-                                        "2.Поиск объекта\n" +
-                                        "3.Печать списка\n" +
-                                        "4.Назад\n" +
-                                        "5.Выход");
+            System.out.print("\n1.Сортировка\n" +
+                             "2.Поиск объекта\n" +
+                             "3.Печать списка\n" +
+                             "4.Назад\n" +
+                             "5.Выход\n" +
+                             "Выберете действие: ");
             userInput = reader.readLine();
             switch (userInput) {
                 case "1" -> {
@@ -41,9 +41,9 @@ public class MainContext {
                     }
                     BinarySearchContext binarySearchContext = new BinarySearchContext();
                     Optional<T> someEntity = binarySearchContext.start(list, entityCreator, reader);
-                    T t = null;
+                    T foundObject = null;
                     if (someEntity.isPresent()) {
-                        t = someEntity.get();
+                        foundObject = someEntity.get();
                     } else {
                         System.out.println("Объект не найден");
                     }

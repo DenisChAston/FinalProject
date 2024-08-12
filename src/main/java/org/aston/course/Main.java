@@ -5,7 +5,9 @@ import org.aston.course.application.datasource.Bus;
 import org.aston.course.application.datasource.Student;
 import org.aston.course.application.datasource.User;
 import org.aston.course.application.usecase.comparators.BusEvenNumberComparatorImpl;
-import org.aston.course.application.usecase.comparators.StudentEvenBussComparatorImpl;
+import org.aston.course.application.usecase.comparators.BusNotEvenNumberComparatorImpl;
+import org.aston.course.application.usecase.comparators.StudentEvenGroupComparatorImpl;
+import org.aston.course.application.usecase.comparators.StudentNotEvenGroupComparatorImpl;
 import org.aston.course.application.usecase.creators.BusCreatorImpl;
 import org.aston.course.application.usecase.creators.StudentCreatorImpl;
 import org.aston.course.application.usecase.creators.UserCreatorImpl;
@@ -43,7 +45,9 @@ public class Main {
         LOAD_STRATEGY_MAP.put("3", new RandomLoadStrategyImpl());
 
         BUS_COMPARATORS.add(new BusEvenNumberComparatorImpl());
-        STUDENT_COMPARATORS.add(new StudentEvenBussComparatorImpl());
+        BUS_COMPARATORS.add(new BusNotEvenNumberComparatorImpl());
+        STUDENT_COMPARATORS.add(new StudentEvenGroupComparatorImpl());
+        STUDENT_COMPARATORS.add(new StudentNotEvenGroupComparatorImpl());
     }
 
     public static void main( String[] args ) throws IOException {
@@ -56,11 +60,11 @@ public class Main {
 
             while (!END_OF_PROGRAM) {
 
-                System.out.println("Выбирете тип объекта из списка:\n" +
-                                                "1.Автобус\n" +
-                                                "2.Пользователь\n" +
-                                                "3.Студент\n" +
-                                                "4.Выход из программы");
+                System.out.print("\n1.Автобус\n" +
+                                 "2.Пользователь\n" +
+                                 "3.Студент\n" +
+                                 "4.Выход из программы\n" +
+                                 "Выбирите тип: ");
                 userInput = reader.readLine();
 
                 switch (userInput) {
@@ -75,11 +79,11 @@ public class Main {
                     }
                 }
 
-                System.out.println("\nВыбирете стратегию заполнения списка:\n" +
-                                                "1.Из файла\n" +
-                                                "2.Вручную\n" +
-                                                "3.Случайно\n" +
-                                                "4.Выход");
+                System.out.print("\n1.Из файла\n" +
+                                 "2.Вручную\n" +
+                                 "3.Случайно\n" +
+                                 "4.Выход\n" +
+                                 "Выбирете стратегию заполнения списка: ");
                 userInput = reader.readLine();
                 switch (userInput) {
                     case "1" -> loadStrategy = LOAD_STRATEGY_MAP.get("1");
@@ -95,7 +99,7 @@ public class Main {
                     }
                 }
 
-                System.out.println("\nУкажите количество объектов:");
+                System.out.print("\nУкажите количество объектов: ");
                 int capacity = Integer.parseInt(reader.readLine());
 
                 switch (typeOfEntity) {

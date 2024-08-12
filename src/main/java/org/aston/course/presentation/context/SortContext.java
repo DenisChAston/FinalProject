@@ -15,8 +15,7 @@ public class SortContext {
 
 
     public <T extends SomeEntity & Comparable<T>> void start(CustomList<T> list, Sort<T> sortType, BufferedReader reader, List<SomeComparator<T>> comparators) throws IOException {
-        boolean isBack = false;
-        String userInput = "";
+        String userInput;
 
         while (true) {
             System.out.println("\nВыберете действие:\n" +
@@ -27,20 +26,24 @@ public class SortContext {
             userInput = reader.readLine();
             switch (userInput) {
                 case "1" -> {
-                    CustomUtils.sort(list, new SelectionSort<>());
-                    list.setListIsAlreadySort(true);
-                    System.out.println("Сортировка выполнена");
+                    if (!list.isListIsAlreadySort()) {
+                        CustomUtils.sort(list, sortType);
+                        list.setListIsAlreadySort(true);
+                        System.out.println("Сортировка выполнена");
+                    }
+                    return;
                 }
                 case "2" -> {
-                    System.out.println("Сортировка четных");
-                    CustomUtils.sort(list, new SelectionSort<>(), comparators.get(0));
+                    CustomUtils.sort(list, sortType, comparators.get(0));
+                    System.out.println("Сортировка выполнена");
+                    return;
                 }
                 case "3" -> {
-                    System.out.println("Сортировка нечетных");
-                    CustomUtils.sort(list, new SelectionSort<>(), comparators.get(1));
+                    CustomUtils.sort(list, sortType, comparators.get(1));
+                    System.out.println("Сортировка выполнена");
+                    return;
                 }
                 case "4" -> {
-                    //isBack = true;
                     return;
                 }
                 default -> System.out.println("Введите цифру в диапазоне!");

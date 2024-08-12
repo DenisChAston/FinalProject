@@ -22,6 +22,7 @@ public class CustomUtils {
     }
 
     public static <T extends Comparable<T> & SomeEntity> void print(CustomList<T> customList) {
+        System.out.println();
         for (int i = 0; i < customList.size(); i++) {
             System.out.print(i+1 + ". ");
             System.out.println(customList.get(i).toString());
