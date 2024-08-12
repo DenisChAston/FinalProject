@@ -10,48 +10,34 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+/**
+ * Стратегия заполнения списка объектами из файла
+ */
+
 public class FileLoadStrategyImpl implements LoadStrategy {
 
+    //добавить валидацию
+
+    /**
+     * Метод заполнения списка объектами из файла
+     * @param list - объект кастомного класса листа
+     * @param creator - объект для создания конкретного объекта
+     * @param <T> - тип объекта
+     * @throws IOException
+     */
     @Override
     public <T extends Comparable<T> & SomeEntity> void load(CustomList<T> list, EntityCreator<T> creator) throws IOException {
         System.out.println("Введите полный путь к файлу и его НАЗВАНИЕ.txt");
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         String file = reader.readLine();
+
         List<String> temp = Files.readAllLines(Path.of(file));
 
         int count = Math.min(temp.size(), list.getCapacity());
-
         for (int i = 0; i < count; i++) {
             String[] params = temp.get(i).split(" ");
             T tempObj = creator.create(params[0], params[1], params[2]);
             list.add(tempObj);
         }
-
-
-
-        /*Scanner scanner = new Scanner(System.in);
-        String file = scanner.nextLine();
-        FileReader fr;
-        try {
-            fr = new FileReader(file);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        BufferedReader br = new BufferedReader(fr);
-        for (int i = 0; i < list.size(); i++) {
-            try {
-                if (!br.ready()) break;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            String[] lineName;
-            try {
-                lineName = br.readLine().split(" ");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            T temp = creator.create(lineName[0], lineName[1], lineName[2]);
-            list.add(temp);
-        }*/
     }
 }

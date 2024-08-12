@@ -7,17 +7,31 @@ import java.util.List;
 
 public class CustomList<E extends Comparable<E> & SomeEntity> {
 
+    /**
+     * Кастомный список объектов. Параметризирован объектами, унаследованными от
+     * интерфейса SomeEntity и Comparable
+     */
 
+    /*
+    Внутри используется обычный список. Можно адаптировать под массив
+     */
     private final List<E> list;
     private final int capacity;
+
+    //флаг для определения того, был ли отсортирован список
     private boolean listIsAlreadySort;
 
-
-
+    /*
+    Устанавливается параметр Capacity - вестимость списка
+     */
     public CustomList(int capacity) {
         list = new ArrayList<>();
         this.capacity = capacity;
     }
+
+    /*
+    Переобределены стандартные методы списка List, для перенаправления действия
+     */
 
     public int size() {
         return list.size();

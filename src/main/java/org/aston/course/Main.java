@@ -27,10 +27,14 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * New project
+ * Project
  */
 
 public class Main {
+
+    /**
+     * Мапа и списки для конфигурации приложения
+     */
 
     private static final Map<String, LoadStrategy> LOAD_STRATEGY_MAP = new HashMap<>();
     private static final List<SomeComparator<Bus>> BUS_COMPARATORS = new ArrayList<>();
@@ -38,6 +42,10 @@ public class Main {
     private static final List<SomeComparator<User>> USER_COMPARATORS = new ArrayList<>();
 
     private static boolean END_OF_PROGRAM = false;
+
+    /**
+     * Заполнение списков и мапы для конфигурации приложения
+     */
 
     static {
         LOAD_STRATEGY_MAP.put("1", new FileLoadStrategyImpl());
@@ -67,6 +75,7 @@ public class Main {
                                  "Выбирите тип: ");
                 userInput = reader.readLine();
 
+                //на основании введенной цифры определяется тип объекта, скотором хочет работать пользователь
                 switch (userInput) {
                     case "1", "2", "3" -> typeOfEntity = userInput;
                     case "4" -> {
@@ -85,6 +94,8 @@ public class Main {
                                  "4.Выход\n" +
                                  "Выбирете стратегию заполнения списка: ");
                 userInput = reader.readLine();
+
+                //на основании введенной цифры определяется стратегия заполнения списка
                 switch (userInput) {
                     case "1" -> loadStrategy = LOAD_STRATEGY_MAP.get("1");
                     case "2" -> loadStrategy = LOAD_STRATEGY_MAP.get("2");
@@ -102,9 +113,10 @@ public class Main {
                 System.out.print("\nУкажите количество объектов: ");
                 int capacity = Integer.parseInt(reader.readLine());
 
+                //в зависимости от введенного типа объекта, формируются параметры контекста приложения. приложение запускается на выполнение
                 switch (typeOfEntity) {
                     case "1" -> END_OF_PROGRAM = context.start(new BusCreatorImpl(), loadStrategy, reader, capacity, BUS_COMPARATORS);
-                    case "2" -> END_OF_PROGRAM = context.start(new UserCreatorImpl(), loadStrategy, reader, capacity, USER_COMPARATORS);
+                    case "2" -> END_OF_PROGRAM = context.start(new UserCreatorImpl(), loadStrategy, reader, capacity, USER_COMPARATORS);//исключение, тк нет компараторов
                     case "3" -> END_OF_PROGRAM = context.start(new StudentCreatorImpl(), loadStrategy, reader, capacity, STUDENT_COMPARATORS);
                 }
             }

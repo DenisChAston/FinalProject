@@ -5,11 +5,16 @@ import org.aston.course.domain.business.EntityCreator;
 
 import java.util.Random;
 
+/**
+ * Класс, отвечающий за создание объекта.
+ * Метод create принимает 3 параметра типа String.
+ * Метод random создает объект со случайными значениями полей
+ */
+
 public class StudentCreatorImpl implements EntityCreator<Student> {
 
     private final Student student = new Student.StudentBuilder().build();
-
-    private final Random rnd = new Random();
+    //private final Random rnd = new Random();
 
     @Override
     public Student create(String groupNumber, String averageScore, String thirdParam) {

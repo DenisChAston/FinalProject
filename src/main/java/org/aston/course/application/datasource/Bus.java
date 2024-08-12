@@ -8,6 +8,7 @@ public class Bus implements SomeEntity, Comparable<Bus> {
 
     private final int number;
     private final String model;
+    //пробег
     private final int mileage;
 
     private Bus(int number, String model, int mileage) {
@@ -56,7 +57,7 @@ public class Bus implements SomeEntity, Comparable<Bus> {
      * Затем сравнивается по полю Model - модель автобуса
      * В конце сравнивается по полю Mileage - пробег автобуса
      * @param otherBus the object to be compared.
-     * @return -1, если номер маршрута меньше, или название модели по алфавиту раньше, или пробег меньше,
+     * @return -1, если номер маршрута меньше, или название модели по алфавиту раньше, или пробег меньше
      * 0, если объекты полностью идентичны
      * 1, если номер маршрута больше, или название модели по алфовиту позже, или пробег больше
      */
@@ -67,9 +68,8 @@ public class Bus implements SomeEntity, Comparable<Bus> {
         return andModelComparing == 0 ? Integer.compare(this.mileage, otherBus.getMileage()) : andModelComparing;
     }
 
-
     /*
-    Метод для возврата названия полей
+    Метод для определения названия полей
      */
     @Override
     public String getFirstParam() {
@@ -90,6 +90,7 @@ public class Bus implements SomeEntity, Comparable<Bus> {
 
         private int number;
         private String model;
+        //пробег
         private int mileage;
 
         public BusBuilder setNumber(int number) {

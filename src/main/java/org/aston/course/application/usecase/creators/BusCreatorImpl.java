@@ -6,11 +6,19 @@ import org.aston.course.domain.business.EntityCreator;
 
 import java.util.Random;
 
+/**
+ * Класс, отвечающий за создание объекта.
+ * Метод create принимает 3 параметра типа String.
+ * Метод random создает объект со случайными значениями полей
+ */
+
 public class BusCreatorImpl implements EntityCreator<Bus> {
+
+    //private final Random rnd = new Random();
 
     private final Bus bus = new Bus.BusBuilder().build();
 
-    private final Random rnd = new Random();
+    //массив, содержащий объекты Enum, описывающие варианты моделей автобусов для случайной генерации объекта
     private static final BusModelNames[] MODELS = BusModelNames.values();
 
     @Override

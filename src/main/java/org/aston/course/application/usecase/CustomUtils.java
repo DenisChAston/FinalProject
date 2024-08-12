@@ -7,28 +7,55 @@ import org.aston.course.domain.business.Sort;
 import java.util.Comparator;
 import java.util.Optional;
 
+/**
+ * Кастомный класс с методами sort, sort с компаратором, бинарным поиском, выводом в консоль списка объектов
+ */
+
 public class CustomUtils {
 
-    public static <T extends Comparable<T> & SomeEntity> void sort(CustomList<T> customList, Sort<T> sort) {
-        sort.sort(customList);
+
+    /**
+     * Метод для сортировки списка с использованием конкретного типа сортировки
+     * @param list - кастомный список объектов
+     * @param sort - объект, определяющий тип сортировки
+     * @param <T> - тип объекта
+     */
+    public static <T extends Comparable<T> & SomeEntity> void sort(CustomList<T> list, Sort<T> sort) {
+        sort.sort(list);
     }
 
-    public static <T extends Comparable<T> & SomeEntity> void sort(CustomList<T> customList, Sort<T> sort, Comparator<T> comparator) {
-        sort.sort(customList, comparator);
+    /**
+     * Метод для сортировки списка с использованием конкретного типа сортировки и компаратора
+     * @param list - кастомный список объектов
+     * @param sort - объект, определяющий тип сортировки
+     * @param comparator - компаратор, определяющий правила сортировки
+     * @param <T> - тип объекта
+     */
+    public static <T extends Comparable<T> & SomeEntity> void sort(CustomList<T> list, Sort<T> sort, Comparator<T> comparator) {
+        sort.sort(list, comparator);
     }
 
-    public static <T extends Comparable<T> & SomeEntity> Optional<T> binarySearch(CustomList<T> customList, T desiredObject) {
+    /**
+     * Метод для бинарного поиска объекта
+     * @param list - кастомный список объектов
+     * @param desiredObject - искомый объект
+     * @return - объект типа Optional
+     * @param <T> - тип объекта
+     */
+    public static <T extends Comparable<T> & SomeEntity> Optional<T> binarySearch(CustomList<T> list, T desiredObject) {
 
         int min, max, mid;
         min = 0;
-        max = customList.size()-1;
+        max = list.size()-1;
+        //если объект не будет найден, то Optional будет хранить null. Далее мы проверим, есть ли внутри него что-то, кроме null
         Optional<T> foundObject = Optional.empty();
 
         while(min <= max) {
             mid = min + (max - 1) / 2;
-            int res = desiredObject.compareTo(customList.get(mid));
+            int res = desiredObject.compareTo(list.get(mid));
             if (res == 0) {
-                foundObject = Optional.of(customList.get(mid));
+                //если объект найден, то упаковываем его в объкт Optional
+                foundObject = Optional.of(list.get(mid));
                 break;
             } else if (res > 0) {
                 min = mid + 1;
@@ -39,11 +66,16 @@ public class CustomUtils {
         return foundObject;
     }
 
-    public static <T extends Comparable<T> & SomeEntity> void print(CustomList<T> customList) {
+    /**
+     * Метод для печати объектов в консоль
+     * @param list - кастомный список объектов
+     * @param <T> - тип объекта
+     */
+    public static <T extends Comparable<T> & SomeEntity> void print(CustomList<T> list) {
         System.out.println();
-        for (int i = 0; i < customList.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             System.out.print(i+1 + ". ");
-            System.out.println(customList.get(i).toString());
+            System.out.println(list.get(i).toString());
         }
     }
 }

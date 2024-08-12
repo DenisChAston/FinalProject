@@ -9,8 +9,20 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+/**
+ * Сратегия заполнения списка объектами через консоль
+ */
+
 public class ConsoleLoadStrategyImpl implements LoadStrategy {
 
+
+    /**
+     * Метод заполнения списка объектами через консоль
+     * @param list - объект кастомного класса листа
+     * @param creator - объект для создания конкретного объекта
+     * @param <T> - тип объекта
+     * @throws IOException
+     */
     @Override
     public <T extends Comparable<T> & SomeEntity> void load(CustomList<T> list, EntityCreator<T> creator) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));

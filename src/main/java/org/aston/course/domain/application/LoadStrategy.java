@@ -6,7 +6,19 @@ import org.aston.course.domain.model.SomeEntity;
 
 import java.io.IOException;
 
+/**
+ * Общий интерфейс для всех стратегий. Реализация паттерна
+ */
+
 public interface LoadStrategy {
+
+   /**
+    * Абстрактный метод для заполнения списка объектами
+    * @param list - астомный список объектов
+    * @param creator - объект для создания конкретного объекта
+    * @param <T> - тип объекта
+    * @throws IOException
+    */
 
    <T extends Comparable<T> & SomeEntity> void load(CustomList<T> list, EntityCreator<T> creator) throws IOException;
 }

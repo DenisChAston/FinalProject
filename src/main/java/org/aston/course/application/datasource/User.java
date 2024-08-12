@@ -50,6 +50,17 @@ public class User implements SomeEntity, Comparable<User> {
         return String.format("Имя:%s, Пароль:%s, Почта:%s", name, password, email);
     }
 
+
+    /**
+     * Сортировка по умолчанию для объектов типа User.
+     * Сначала сравнивается по полю Name - имя пользователя
+     * Затем сравнивается по полю Email - email пользователя
+     * В конце сравнивается по полю Password - пароль
+     * @param otherUser the object to be compared.
+     * @return -1, если имя по алфавиту раньше, или email по алфавиту раньше, или пароль по алфавиту раньше
+     * 0, если объекты полностью идентичны
+     * 1, если имя по алфавиту позже, или email по алфавиту позже, или пароль по алфавиту розже
+     */
     @Override
     public int compareTo(User otherUser) {
         int nameComparing = this.name.toLowerCase().compareTo(otherUser.getName().toLowerCase());
