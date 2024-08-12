@@ -5,6 +5,7 @@ import org.aston.course.domain.model.SomeEntity;
 import org.aston.course.domain.business.Sort;
 
 import java.util.Comparator;
+import java.util.Optional;
 
 public class CustomUtils {
 
@@ -16,8 +17,8 @@ public class CustomUtils {
         sort.sort(customList, comparator);
     }
 
-    public static <T extends Comparable<T> & SomeEntity> int binarySearch(CustomList<T> customList, T t) {
-        return -1;
+    public static <T extends Comparable<T> & SomeEntity> Optional<T> binarySearch(CustomList<T> customList, T t) {
+        return Optional.of(t) ;
     }
 
     public static <T extends Comparable<T> & SomeEntity> void print(CustomList<T> customList) {

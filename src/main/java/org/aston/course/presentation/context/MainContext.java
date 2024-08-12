@@ -11,20 +11,24 @@ import org.aston.course.domain.model.SomeEntity;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class MainContext {
 
     public <T extends Comparable<T> & SomeEntity> boolean start(EntityCreator<T> entityCreator, LoadStrategy loadStrategy, BufferedReader reader,
                                                                 int listCapacity, List<SomeComparator<T>> comparators) throws IOException {
 
-        boolean isBack = false;
-        boolean isExit = false;
-        String userInput = "";
+        String userInput;
         CustomList<T> list = new CustomList<>(listCapacity);
         loadStrategy.load(list, entityCreator);
 
-        while (!isBack) {
-            System.out.println("\nВыберете действие:\n1.Сортировка\n2.Поиск объекта\n3.Печать списка\n4.Назад\n5.Выход");
+        while (true) {
+            System.out.println("\nВыберете действие:\n" +
+                                        "1.Сортировка\n" +
+                                        "2.Поиск объекта\n" +
+                                        "3.Печать списка\n" +
+                                        "4.Назад\n" +
+                                        "5.Выход");
             userInput = reader.readLine();
             switch (userInput) {
                 case "1" -> {
@@ -35,24 +39,27 @@ public class MainContext {
                         CustomUtils.sort(list, new SelectionSort<>());
                         System.out.println("Выполнена сортировка");
                     }
-                    //list.binarySearch();
-                    //сделать вызов метода поиска;
+                    BinarySearchContext binarySearchContext = new BinarySearchContext();
+                    Optional<T> someEntity = binarySearchContext.start(list, entityCreator, reader);
+                    T t = null;
+                    if (someEntity.isPresent()) {
+                        t = someEntity.get();
+                    } else {
+                        System.out.println("Объект не найден");
+                    }
                 }
                 case "3" -> {
                     CustomUtils.print(list);
-                    //вызов метода печати списка
                 }
                 case "4" -> {
-                    isBack = true;
+                    return false;
                 }
                 case "5" -> {
-                    isBack = true;
-                    isExit = true;
+                    return true;
                 }
                 default -> System.out.println("Введите цифру в диапазоне!");
             }
         }
-        return isExit;
     }
 }
 

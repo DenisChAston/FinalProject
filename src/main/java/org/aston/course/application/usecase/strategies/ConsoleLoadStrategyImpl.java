@@ -15,11 +15,11 @@ public class ConsoleLoadStrategyImpl implements LoadStrategy {
     public <T extends Comparable<T> & SomeEntity> void load(CustomList<T> list, EntityCreator<T> creator) throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         for (int i = 1; i <= list.getCapacity(); i++) {
-            System.out.printf("Введите %s %d\n", creator.getFirstParamName(), i);
+            System.out.printf("Введите %s %d: ", creator.getFirstParamName(), i);
             String firstParam = reader.readLine();
-            System.out.printf("Введите %s %d\n", creator.getSecondParamName(), i);
+            System.out.printf("Введите %s %d: ", creator.getSecondParamName(), i);
             String secondParam = reader.readLine();
-            System.out.printf("Введите %s %d\n", creator.getThirdParamName(), i);
+            System.out.printf("Введите %s %d: ", creator.getThirdParamName(), i);
             String thirdParam = reader.readLine();
             T tempEntity = creator.create(firstParam, secondParam, thirdParam);
             list.add(tempEntity);

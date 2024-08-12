@@ -3,7 +3,7 @@ package org.aston.course.application.usecase.comparators;
 import org.aston.course.application.datasource.Bus;
 import org.aston.course.domain.business.SomeComparator;
 
-public class BussEvenNumberComparatorImpl implements SomeComparator<Bus> {
+public class BusEvenNumberComparatorImpl implements SomeComparator<Bus> {
 
     @Override
     public int compare(Bus thisBus, Bus otherBus) {

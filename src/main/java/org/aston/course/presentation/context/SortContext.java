@@ -1,11 +1,7 @@
 package org.aston.course.presentation.context;
 
-import org.aston.course.application.datasource.Bus;
 import org.aston.course.application.datasource.CustomList;
-import org.aston.course.application.datasource.Student;
 import org.aston.course.application.usecase.CustomUtils;
-import org.aston.course.application.usecase.comparators.BussEvenNumberComparatorImpl;
-import org.aston.course.application.usecase.comparators.StudentEvenBussComparatorImpl;
 import org.aston.course.application.usecase.sort.SelectionSort;
 import org.aston.course.domain.business.SomeComparator;
 import org.aston.course.domain.business.Sort;
@@ -22,8 +18,12 @@ public class SortContext {
         boolean isBack = false;
         String userInput = "";
 
-        while (!isBack) {
-            System.out.println("\nВыберете действие:\n1.Сортировка\n2.Сортировка четных\n3.Сортировка нечетных\n4.Назад");
+        while (true) {
+            System.out.println("\nВыберете действие:\n" +
+                                        "1.Сортировка\n" +
+                                        "2.Сортировка четных\n" +
+                                        "3.Сортировка нечетных\n" +
+                                        "4.Назад");
             userInput = reader.readLine();
             switch (userInput) {
                 case "1" -> {
@@ -40,7 +40,8 @@ public class SortContext {
                     CustomUtils.sort(list, new SelectionSort<>(), comparators.get(1));
                 }
                 case "4" -> {
-                    isBack = true;
+                    //isBack = true;
+                    return;
                 }
                 default -> System.out.println("Введите цифру в диапазоне!");
             }

@@ -4,7 +4,7 @@ package org.aston.course;
 import org.aston.course.application.datasource.Bus;
 import org.aston.course.application.datasource.Student;
 import org.aston.course.application.datasource.User;
-import org.aston.course.application.usecase.comparators.BussEvenNumberComparatorImpl;
+import org.aston.course.application.usecase.comparators.BusEvenNumberComparatorImpl;
 import org.aston.course.application.usecase.comparators.StudentEvenBussComparatorImpl;
 import org.aston.course.application.usecase.creators.BusCreatorImpl;
 import org.aston.course.application.usecase.creators.StudentCreatorImpl;
@@ -14,7 +14,6 @@ import org.aston.course.application.usecase.strategies.FileLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.RandomLoadStrategyImpl;
 import org.aston.course.domain.application.LoadStrategy;
 import org.aston.course.domain.business.SomeComparator;
-import org.aston.course.domain.model.SomeEntity;
 import org.aston.course.presentation.context.MainContext;
 
 import java.io.BufferedReader;
@@ -43,7 +42,7 @@ public class Main {
         LOAD_STRATEGY_MAP.put("2", new ConsoleLoadStrategyImpl());
         LOAD_STRATEGY_MAP.put("3", new RandomLoadStrategyImpl());
 
-        BUS_COMPARATORS.add(new BussEvenNumberComparatorImpl());
+        BUS_COMPARATORS.add(new BusEvenNumberComparatorImpl());
         STUDENT_COMPARATORS.add(new StudentEvenBussComparatorImpl());
     }
 
@@ -57,7 +56,11 @@ public class Main {
 
             while (!END_OF_PROGRAM) {
 
-                System.out.println("Выбирете тип объекта из списка:\n1.Автобус\n2.Пользователь\n3.Студент\n4.Выход из программы");
+                System.out.println("Выбирете тип объекта из списка:\n" +
+                                                "1.Автобус\n" +
+                                                "2.Пользователь\n" +
+                                                "3.Студент\n" +
+                                                "4.Выход из программы");
                 userInput = reader.readLine();
 
                 switch (userInput) {
@@ -72,7 +75,11 @@ public class Main {
                     }
                 }
 
-                System.out.println("\nВыбирете стратегию заполнения списка:\n1.Из файла\n2.Вручную\n3.Случайно\n4.Выход");
+                System.out.println("\nВыбирете стратегию заполнения списка:\n" +
+                                                "1.Из файла\n" +
+                                                "2.Вручную\n" +
+                                                "3.Случайно\n" +
+                                                "4.Выход");
                 userInput = reader.readLine();
                 switch (userInput) {
                     case "1" -> loadStrategy = LOAD_STRATEGY_MAP.get("1");
