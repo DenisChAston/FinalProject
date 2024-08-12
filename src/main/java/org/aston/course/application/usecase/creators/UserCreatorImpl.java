@@ -16,12 +16,6 @@ public class UserCreatorImpl implements EntityCreator<User> {
     private static final UpCaseAlphabet[] UP_CASE_ALPHABETS = UpCaseAlphabet.values();
     private static final LowCaseAlphabet[] LOW_CASE_ALPHABETS = LowCaseAlphabet.values();
     private static final EmailAddress[] EMAIL_ADDRESSES = EmailAddress.values();
-
-/*    public static final String upCharsRus = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-    private static final String lowCharsRus = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-
-
-    private static final String[] emails = {"@mail.ru", "@yandex.ru", "@gmail.com"};*/
     private final Random rnd = new Random();
 
     @Override
@@ -74,7 +68,6 @@ public class UserCreatorImpl implements EntityCreator<User> {
         email.append(EMAIL_ADDRESSES[rnd.nextInt(EMAIL_ADDRESSES.length)].getName());
         return email;
     }
-
 
     @Override
     public String getFirstParamName() {

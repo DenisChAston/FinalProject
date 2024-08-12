@@ -50,6 +50,16 @@ public class Bus implements SomeEntity, Comparable<Bus> {
         return result;
     }
 
+    /**
+     * Сортировка по умолчанию для объектов типа Bus.
+     * Сначала сравнивается по полю Number - номер маршрута автобуса
+     * Затем сравнивается по полю Model - модель автобуса
+     * В конце сравнивается по полю Mileage - пробег автобуса
+     * @param otherBus the object to be compared.
+     * @return -1, если номер маршрута меньше, или название модели по алфавиту раньше, или пробег меньше,
+     * 0, если объекты полностью идентичны
+     * 1, если номер маршрута больше, или название модели по алфовиту позже, или пробег больше
+     */
     @Override
     public int compareTo(Bus otherBus) {
         int numberComparing = Integer.compare(this.number, otherBus.getNumber());
@@ -57,6 +67,10 @@ public class Bus implements SomeEntity, Comparable<Bus> {
         return andModelComparing == 0 ? Integer.compare(this.mileage, otherBus.getMileage()) : andModelComparing;
     }
 
+
+    /*
+    Метод для возврата названия полей
+     */
     @Override
     public String getFirstParam() {
         return "номер автобуса";
