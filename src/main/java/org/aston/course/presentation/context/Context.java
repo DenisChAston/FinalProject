@@ -50,10 +50,7 @@ public class Context {
             System.out.println("Введите откуда");
             String t = reader.readLine();
             loadStrategyMap.get(t).load(list, createStrategyMap.get(s));
-            System.out.println(list);
-
+            list.stream().forEach(System.out::println);
         }
-
     }
-
 }

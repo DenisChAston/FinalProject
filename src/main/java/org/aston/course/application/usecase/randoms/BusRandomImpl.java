@@ -24,7 +24,7 @@ public class BusRandomImpl implements GeneratorStrategy<Bus> {
 
     private String busNameGen() {
         BusName[] name = BusName.values();
-        int randomName = ThreadLocalRandom.current().nextInt(1, BusName.values().length);
+        int randomName = ThreadLocalRandom.current().nextInt(0, BusName.values().length);
         return String.valueOf(name[randomName]);
     }
 
