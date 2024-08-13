@@ -35,15 +35,20 @@ public class MainContext {
 
         String userInput;
         CustomList<T> list = new CustomList<>(listCapacity);
-        loadStrategy.load(list, entityCreator);
+
+        loadStrategy.load(list, entityCreator, reader);
+        if (list.size() == 0) {
+            System.out.println("Список пустой!");
+            return false;
+        }
 
         while (true) {
             System.out.print("\n1.Сортировка\n" +
-                             "2.Поиск объекта\n" +
-                             "3.Печать списка\n" +
-                             "4.Назад\n" +
-                             "5.Выход\n" +
-                             "Выберете действие: ");
+                               "2.Поиск объекта\n" +
+                               "3.Печать списка\n" +
+                               "4.Назад\n" +
+                               "5.Выход\n" +
+                               "Выберете действие: ");
             userInput = reader.readLine();
             switch (userInput) {
                 case "1" -> {
@@ -54,13 +59,14 @@ public class MainContext {
                     //если список не осортирован, то сортируем его
                     if (!list.isListIsAlreadySort()) {
                         CustomUtils.sort(list, new SelectionSort<>());
+                        list.setListIsAlreadySort(true);
                         System.out.println("Выполнена сортировка");
                     }
                     //и только потом создавать новый контекст для работы с пользователем по поиску объекта
                     BinarySearchContext binarySearchContext = new BinarySearchContext();
-                    //возвращается объект Optional, который либо пустой внутрикоторый, либо содержит искомый объект
+                    //возвращается объект Optional, который либо пустой внутри, либо содержит искомый объект
                     Optional<T> resultEntity = binarySearchContext.start(list, entityCreator, reader);
-                    T foundObject = null;
+                    T foundObject;
                     //если он не пустой внутри, то достаем искомый объект
                     if (resultEntity.isPresent()) {
                         foundObject = resultEntity.get();

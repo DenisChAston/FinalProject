@@ -1,5 +1,6 @@
 package org.aston.course.application.datasource;
 
+import org.aston.course.application.usecase.exceptions.NegativeNumberException;
 import org.aston.course.domain.model.SomeEntity;
 
 import java.math.BigDecimal;
@@ -91,16 +92,27 @@ public class Student implements SomeEntity, Comparable<Student> {
         private int gradebookNumber;
 
         public StudentBuilder setGroupNumber(int groupNumber) {
+            if (groupNumber <= 0) {
+                throw new NegativeNumberException("Отрицательное число номера группы студента не допустимо!");
+            }
             this.groupNumber = groupNumber;
             return this;
         }
 
         public StudentBuilder setAverageScore(double averageScore) {
+            if ((new BigDecimal(averageScore).compareTo(new BigDecimal(0)) < 0) ||
+            (new BigDecimal(averageScore).compareTo(new BigDecimal(5)) > 0)) {
+                throw new NegativeNumberException("Средний балл студента может быть в диапазоне от 0.00 до 5.00!");
+            }
             this.averageScore = averageScore;
             return this;
         }
 
         public StudentBuilder setGradebookNumber(int gradebookNumber) {
+            if (gradebookNumber <= 0) {
+                throw new NegativeNumberException("Отрицательное число номера зачетной книжки студента не допустимо!");
+            }
+
             this.gradebookNumber = gradebookNumber;
             return this;
         }

@@ -1,5 +1,6 @@
 package org.aston.course.application.datasource;
 
+import org.aston.course.application.usecase.exceptions.NegativeNumberException;
 import org.aston.course.domain.model.SomeEntity;
 
 import java.util.Objects;
@@ -94,6 +95,9 @@ public class Bus implements SomeEntity, Comparable<Bus> {
         private int mileage;
 
         public BusBuilder setNumber(int number) {
+            if (number <= 0) {
+                throw new NegativeNumberException("Отрицательное число номера автобуса не допустимо!");
+            }
             this.number = number;
             return this;
         }
@@ -104,6 +108,9 @@ public class Bus implements SomeEntity, Comparable<Bus> {
         }
 
         public BusBuilder setMileage(int mileage) {
+            if (mileage < 0) {
+                throw new NegativeNumberException("Отрицательное число пробега автобуса не допустимо!");
+            }
             this.mileage = mileage;
             return this;
         }

@@ -31,6 +31,13 @@ public class UserCreatorImpl implements EntityCreator<User> {
         return new User.UserBuilder().setName(name).setPassword(password).setEmail(thirdParam).build();
     }
 
+    /**
+     * Метод создает объект типа User со случайными значениями полей
+     * Имя из случайных букв из массива объектов типа Enum
+     * Пароль из случайных букв из массива объектов типа Enum
+     * Email из случайных букв и случайного значения доменного имени из массива объектов типа Enum
+     * @return - объект типа User
+     */
     @Override
     public User random() {
         StringBuilder name = getUserNameRandom();
@@ -75,6 +82,7 @@ public class UserCreatorImpl implements EntityCreator<User> {
     Случайная генерация имени email пользователя. Email будет содержать от 6 до 8 символов,
     Если случайное число равно 0, то выбирается случайная цифра в email, либо случайная строчная буква.
     В конце добавляется случайный доменный адрес.
+    Можно переделать на создание от имени пользователя и случайного доменного имени.
      */
     private StringBuilder getUserEmailRandom() {
         StringBuilder email = new StringBuilder();

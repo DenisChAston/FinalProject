@@ -1,5 +1,6 @@
 package org.aston.course.application.datasource;
 
+import org.aston.course.application.usecase.exceptions.EmailFormatException;
 import org.aston.course.domain.model.SomeEntity;
 
 import java.math.BigDecimal;
@@ -99,6 +100,9 @@ public class User implements SomeEntity, Comparable<User> {
         }
 
         public UserBuilder setEmail(String email) {
+            if (!email.matches("\\w+([.-]?\\w+)*@\\w+([.-]?\\w+)*\\.\\w{2,4}")) {
+                throw new EmailFormatException("Не верный формат email адреса - example@domain.ru/com/org");
+            }
             this.email = email;
             return this;
         }

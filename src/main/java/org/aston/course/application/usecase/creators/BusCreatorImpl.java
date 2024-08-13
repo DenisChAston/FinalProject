@@ -4,8 +4,6 @@ import org.aston.course.application.datasource.Bus;
 import org.aston.course.application.usecase.enums.BusModelNames;
 import org.aston.course.domain.business.EntityCreator;
 
-import java.util.Random;
-
 /**
  * Класс, отвечающий за создание объекта.
  * Метод create принимает 3 параметра типа String.
@@ -13,8 +11,6 @@ import java.util.Random;
  */
 
 public class BusCreatorImpl implements EntityCreator<Bus> {
-
-    //private final Random rnd = new Random();
 
     private final Bus bus = new Bus.BusBuilder().build();
 
@@ -28,9 +24,16 @@ public class BusCreatorImpl implements EntityCreator<Bus> {
         return new Bus.BusBuilder().setNumber(tempNumber).setModel(model).setMileage(temMileage).build();
     }
 
+    /**
+     * Метод создает объект типа Bus со случайными значениями полей
+     * Номер автобуса в диапазоне от 1 до 999
+     * Модель автобуса из списка моделей типа Enum
+     * Пробег автобуса в диапазоне от 0 до 999999
+     * @return - объект типа Bus
+     */
     @Override
     public Bus random() {
-        return create(String.valueOf(rnd.nextInt(100)), String.valueOf(MODELS[rnd.nextInt(MODELS.length)]), String.valueOf(rnd.nextInt(10000)));
+        return create(String.valueOf(rnd.nextInt(1,1000)), String.valueOf(MODELS[rnd.nextInt(MODELS.length)]), String.valueOf(rnd.nextInt(1000000)));
     }
 
     @Override

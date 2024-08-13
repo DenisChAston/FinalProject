@@ -4,6 +4,7 @@ import org.aston.course.application.datasource.CustomList;
 import org.aston.course.domain.business.EntityCreator;
 import org.aston.course.domain.model.SomeEntity;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 
 /**
@@ -20,5 +21,5 @@ public interface LoadStrategy {
     * @throws IOException
     */
 
-   <T extends Comparable<T> & SomeEntity> void load(CustomList<T> list, EntityCreator<T> creator) throws IOException;
+   <T extends Comparable<T> & SomeEntity> void load(CustomList<T> list, EntityCreator<T> creator, BufferedReader reader) throws IOException;
 }

@@ -3,8 +3,6 @@ package org.aston.course.application.usecase.creators;
 import org.aston.course.application.datasource.Student;
 import org.aston.course.domain.business.EntityCreator;
 
-import java.util.Random;
-
 /**
  * Класс, отвечающий за создание объекта.
  * Метод create принимает 3 параметра типа String.
@@ -24,9 +22,16 @@ public class StudentCreatorImpl implements EntityCreator<Student> {
         return new Student.StudentBuilder().setGroupNumber(tempGroupNumber).setAverageScore(tempAverageScore).setGradebookNumber(tempGradebookNumber).build();
     }
 
+    /**
+     * Метод создает объект типа Student со случайными значениями полей
+     * Номер группы в диапазоне от 1 до 50
+     * Среднее значение от 0 до 5
+     * Номер зачетной книжки в диапазоне от 1 до 1000000
+     * @return - объект типа Student
+     */
     @Override
     public Student random() {
-        return create(String.valueOf(rnd.nextInt(10)), String.valueOf(rnd.nextDouble(2,5)), String.valueOf(rnd.nextInt(1000)));
+        return create(String.valueOf(rnd.nextInt(1,50)), String.valueOf(rnd.nextDouble(0,5.1)), String.valueOf(rnd.nextInt(1,1000000)));
     }
 
     @Override

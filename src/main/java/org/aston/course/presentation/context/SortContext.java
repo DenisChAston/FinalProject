@@ -30,11 +30,11 @@ public class SortContext {
         String userInput;
 
         while (true) {
-            System.out.println("\nВыберете действие:\n" +
-                                        "1.Сортировка\n" +
-                                        "2.Сортировка четных\n" +
-                                        "3.Сортировка нечетных\n" +
-                                        "4.Назад");
+            System.out.print("\n1.Сортировка\n" +
+                               "2.Сортировка четных\n" +
+                               "3.Сортировка нечетных\n" +
+                               "4.Назад\n" +
+                               "Выберете действие:");
             userInput = reader.readLine();
             switch (userInput) {
                 case "1" -> {

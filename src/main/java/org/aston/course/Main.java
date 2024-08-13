@@ -91,7 +91,8 @@ public class Main {
                 System.out.print("\n1.Из файла\n" +
                                  "2.Вручную\n" +
                                  "3.Случайно\n" +
-                                 "4.Выход\n" +
+                                 "4.Назад\n" +
+                                 "5.Выход\n" +
                                  "Выбирете стратегию заполнения списка: ");
                 userInput = reader.readLine();
 
@@ -101,6 +102,10 @@ public class Main {
                     case "2" -> loadStrategy = LOAD_STRATEGY_MAP.get("2");
                     case "3" -> loadStrategy = LOAD_STRATEGY_MAP.get("3");
                     case "4" -> {
+                        END_OF_PROGRAM = false;
+                        continue;
+                    }
+                    case "5" -> {
                         END_OF_PROGRAM = true;
                         continue;
                     }
@@ -111,7 +116,18 @@ public class Main {
                 }
 
                 System.out.print("\nУкажите количество объектов: ");
-                int capacity = Integer.parseInt(reader.readLine());
+                int capacity = 0;
+                try {
+                    capacity = Integer.parseInt(reader.readLine());
+                } catch (NumberFormatException e) {
+                    System.out.println("Укажите количество объектов числом!");
+                    continue;
+                }
+
+                if (capacity <= 0) {
+                    System.out.println("Количество объектов не может быть меньше 1");
+                    continue;
+                }
 
                 //в зависимости от введенного типа объекта, формируются параметры контекста приложения. приложение запускается на выполнение
                 switch (typeOfEntity) {
