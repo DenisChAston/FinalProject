@@ -2,10 +2,10 @@ package org.aston.course.application.datasource;
 
 import org.aston.course.domain.model.SomeEntity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.AbstractList;
+import java.util.Arrays;
 
-public class CustomList<E extends Comparable<E> & SomeEntity> {
+public class CustomList<E extends Comparable<E> & SomeEntity> extends AbstractList<E> {
 
     /**
      * Кастомный список объектов. Параметризирован объектами, унаследованными от
@@ -15,8 +15,9 @@ public class CustomList<E extends Comparable<E> & SomeEntity> {
     /*
     Внутри используется обычный список. Можно адаптировать под массив
      */
-    private final List<E> list;
+    private Object[] array;
     private final int capacity;
+    private int size = 0;
 
     //флаг для определения того, был ли отсортирован список
     private boolean listIsAlreadySort;
@@ -25,7 +26,7 @@ public class CustomList<E extends Comparable<E> & SomeEntity> {
     Устанавливается параметр Capacity - вестимость списка
      */
     public CustomList(int capacity) {
-        list = new ArrayList<>();
+        array = new Object[capacity];
         this.capacity = capacity;
     }
 
@@ -34,24 +35,61 @@ public class CustomList<E extends Comparable<E> & SomeEntity> {
      */
 
     public int size() {
-        return list.size();
+        return size;
+    }
+
+    public E get(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + size);
+        }
+        return (E) array[index];
     }
 
     public int getCapacity() {
         return capacity;
     }
 
-    public void set(int index, E e) {
-        list.set(index, e);
+    //set
+
+    @Override
+    public E set(int index, E element) {
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + size);
+        }
+        array[index] = element;
+        return element;
     }
 
-    public void add(E e) {
-        list.add(e);
+    @Override
+    public boolean add(E e) {
+        set(size(), e);
+        size++;
+        return true;
     }
 
-    public E get(int index) {
-        return list.get(index);
+/*    public void add(int index, E e) {
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("Index: " + index + ", Size " + size);
+        }
+        ensureCapacity();
+        for (int i = size - 1; i >= index ; i--) {
+            array[i+1] = array[i];
+        }
+        array[index] = e;
+        size++;
+    }*/
+
+    private void ensureCapacity() {
+        int newSize = array.length * 2;
+        array = Arrays.copyOf(array, newSize);
     }
+
+/*    public void optimizeCapacity() {
+        if (size() < getCapacity()) {
+            int newCapacity = size();
+            array = Arrays.copyOf(array, newCapacity);
+        }
+    }*/
 
     public boolean isListIsAlreadySort() {
         return listIsAlreadySort;
@@ -63,6 +101,6 @@ public class CustomList<E extends Comparable<E> & SomeEntity> {
 
     @Override
     public String toString() {
-        return list.toString();
+        return array.toString();
     }
 }

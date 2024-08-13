@@ -34,7 +34,9 @@ public class ConsoleLoadStrategyImpl implements LoadStrategy {
             obj.ifPresent(list::add);
         }
 
-        if (list.size() != 0)
+        if (list.size() != 0) {
             System.out.println("\nСписок создан");
+        }
+
     }
 }

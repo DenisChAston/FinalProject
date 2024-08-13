@@ -64,7 +64,9 @@ public class FileLoadStrategyImpl implements LoadStrategy {
             }
         }
 
-        if (list.size() != 0)
+        if (list.size() != 0) {
             System.out.println("Список загружен из файла");
+        }
+
     }
 }

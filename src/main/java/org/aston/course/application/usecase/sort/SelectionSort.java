@@ -19,6 +19,7 @@ public class SelectionSort<T extends Comparable<T> & SomeEntity> implements Sort
      */
     @Override
     public void sort(CustomList<T> list) {
+        long start = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
             int pos = i;
             T min = list.get(i);
@@ -31,6 +32,8 @@ public class SelectionSort<T extends Comparable<T> & SomeEntity> implements Sort
             list.set(pos, list.get(i));
             list.set(i, min);
         }
+        long finish = System.currentTimeMillis();
+        System.out.println(finish-start);
     }
 
     /**
@@ -40,6 +43,7 @@ public class SelectionSort<T extends Comparable<T> & SomeEntity> implements Sort
      */
     @Override
     public void sort(CustomList<T> list, Comparator<T> comparator) {
+        long start = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
             int pos = i;
             T min = list.get(i);
@@ -52,5 +56,7 @@ public class SelectionSort<T extends Comparable<T> & SomeEntity> implements Sort
             list.set(pos, list.get(i));
             list.set(i, min);
         }
+        long finish = System.currentTimeMillis();
+        System.out.println(finish-start);
     }
 }
