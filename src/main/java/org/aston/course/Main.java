@@ -116,7 +116,7 @@ public class Main {
                 }
 
                 System.out.print("\nУкажите количество объектов: ");
-                int capacity = 0;
+                int capacity;
                 try {
                     capacity = Integer.parseInt(reader.readLine());
                 } catch (NumberFormatException e) {
@@ -125,7 +125,7 @@ public class Main {
                 }
 
                 if (capacity <= 0) {
-                    System.out.println("Количество объектов не может быть меньше 1");
+                    System.out.println("Количество объектов не может быть меньше 0");
                     continue;
                 }
 
@@ -137,7 +137,7 @@ public class Main {
                 }
             }
         } catch (IOException e) {
-            System.out.println("exc");
+            e.printStackTrace();
         }
     }
 }
