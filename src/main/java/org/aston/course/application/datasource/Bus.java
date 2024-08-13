@@ -1,8 +1,9 @@
 package org.aston.course.application.datasource;
 
+import org.aston.course.domain.model.EvenOddCheck;
 import org.aston.course.domain.model.SomeEntity;
 
-public class Bus implements SomeEntity<Bus> {
+public class Bus implements SomeEntity<Bus>, EvenOddCheck {
 
     private final int number;
     private final String model;

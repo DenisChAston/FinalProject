@@ -57,11 +57,6 @@ public class User implements SomeEntity <User> {
         return andEmailComparing == 0 ? this.password.toLowerCase().compareTo(otherUser.getPassword().toLowerCase()) : andEmailComparing;
     }
 
-    @Override
-    public boolean isEvenNumber() {
-        return false;
-    }
-
     public static class UserBuilder {
         private String name;
         private String password;

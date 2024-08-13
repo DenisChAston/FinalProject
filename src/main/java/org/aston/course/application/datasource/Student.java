@@ -1,10 +1,11 @@
 package org.aston.course.application.datasource;
 
+import org.aston.course.domain.model.EvenOddCheck;
 import org.aston.course.domain.model.SomeEntity;
 
 import java.math.BigDecimal;
 
-public class Student implements SomeEntity <Student> {
+public class Student implements SomeEntity <Student>, EvenOddCheck {
 
     private final int groupNumber;
     private final double averageScore;
