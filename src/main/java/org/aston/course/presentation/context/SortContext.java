@@ -30,7 +30,7 @@ public class SortContext {
         String userInput;
 
         while (true) {
-            System.out.print("\n1.Сортировка\n" +
+            System.out.print("\n1.Сортировка стандартная\n" +
                                "2.Сортировка четных\n" +
                                "3.Сортировка нечетных\n" +
                                "4.Назад\n" +
@@ -49,6 +49,10 @@ public class SortContext {
                 }
                 case "2" -> {
                     //сортировка, если значение параметра четное
+                    //заглушка на количество компараторов
+                    if (comparators.size()<2) {
+                        return;
+                    }
                     CustomUtils.sort(list, sortType, comparators.get(0));
                     list.setListIsAlreadySort(false);
                     System.out.println("Сортировка выполнена");
@@ -56,6 +60,10 @@ public class SortContext {
                 }
                 case "3" -> {
                     //сортировка, если значение параметра нечетное
+                    //заглушка на количество компараторов
+                    if (comparators.size()<2) {
+                        return;
+                    }
                     CustomUtils.sort(list, sortType, comparators.get(1));
                     list.setListIsAlreadySort(false);
                     System.out.println("Сортировка выполнена");

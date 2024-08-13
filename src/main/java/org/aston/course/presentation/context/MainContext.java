@@ -62,7 +62,7 @@ public class MainContext {
                         list.setListIsAlreadySort(true);
                         System.out.println("Выполнена сортировка");
                     }
-                    //и только потом создавать новый контекст для работы с пользователем по поиску объекта
+                    //и только потом создавется новый контекст для работы с пользователем по поиску объекта
                     BinarySearchContext binarySearchContext = new BinarySearchContext();
                     //возвращается объект Optional, который либо пустой внутри, либо содержит искомый объект
                     Optional<T> resultEntity = binarySearchContext.start(list, entityCreator, reader);
