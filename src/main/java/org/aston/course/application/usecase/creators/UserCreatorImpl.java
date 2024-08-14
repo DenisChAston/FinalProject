@@ -43,6 +43,7 @@ public class UserCreatorImpl implements EntityCreator<User> {
         StringBuilder name = getUserNameRandom();
         StringBuilder password = getUserPasswordRandom();
         StringBuilder email = getUserEmailRandom();
+        //StringBuilder email = getUserEmailRandom(name.toString());
         return create(name.toString(), password.toString(), email.toString());
     }
 
@@ -93,6 +94,12 @@ public class UserCreatorImpl implements EntityCreator<User> {
                 email.append(LOW_CASE_ALPHABETS[rnd.nextInt(LOW_CASE_ALPHABETS.length)]);
             }
         }
+        email.append(EMAIL_ADDRESSES[rnd.nextInt(EMAIL_ADDRESSES.length)].getName());
+        return email;
+    }
+
+    private StringBuilder getUserEmailRandom(String name) {
+        StringBuilder email = new StringBuilder(name);
         email.append(EMAIL_ADDRESSES[rnd.nextInt(EMAIL_ADDRESSES.length)].getName());
         return email;
     }
