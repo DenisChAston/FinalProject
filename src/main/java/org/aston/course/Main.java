@@ -14,6 +14,7 @@ import org.aston.course.application.usecase.creators.UserCreatorImpl;
 import org.aston.course.application.usecase.strategies.ConsoleLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.FileLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.RandomLoadStrategyImpl;
+import org.aston.course.application.usecase.strategies.ServletLoadStrategyImpl;
 import org.aston.course.domain.application.LoadStrategy;
 import org.aston.course.domain.business.SomeComparator;
 import org.aston.course.presentation.context.MainContext;
@@ -51,6 +52,7 @@ public class Main {
         LOAD_STRATEGY_MAP.put("1", new FileLoadStrategyImpl());
         LOAD_STRATEGY_MAP.put("2", new ConsoleLoadStrategyImpl());
         LOAD_STRATEGY_MAP.put("3", new RandomLoadStrategyImpl());
+        LOAD_STRATEGY_MAP.put("4",new ServletLoadStrategyImpl());
 
         BUS_COMPARATORS.add(new BusEvenNumberComparatorImpl());
         BUS_COMPARATORS.add(new BusNotEvenNumberComparatorImpl());
@@ -91,8 +93,9 @@ public class Main {
                 System.out.print("\n1.Из файла\n" +
                                  "2.Вручную\n" +
                                  "3.Случайно\n" +
-                                 "4.Назад\n" +
-                                 "5.Выход\n" +
+                                "4.С сервера\n"+
+                                 "5.Назад\n" +
+                                 "6.Выход\n" +
                                  "Выбирете стратегию заполнения списка: ");
                 userInput = reader.readLine();
 
@@ -101,11 +104,12 @@ public class Main {
                     case "1" -> loadStrategy = LOAD_STRATEGY_MAP.get("1");
                     case "2" -> loadStrategy = LOAD_STRATEGY_MAP.get("2");
                     case "3" -> loadStrategy = LOAD_STRATEGY_MAP.get("3");
-                    case "4" -> {
+                    case "4" -> loadStrategy = LOAD_STRATEGY_MAP.get("4");
+                    case "5" -> {
                         END_OF_PROGRAM = false;
                         continue;
                     }
-                    case "5" -> {
+                    case "6" -> {
                         END_OF_PROGRAM = true;
                         continue;
                     }
