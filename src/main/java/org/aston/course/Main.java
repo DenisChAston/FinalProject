@@ -11,6 +11,7 @@ import org.aston.course.application.usecase.comparators.StudentNotEvenGroupCompa
 import org.aston.course.application.usecase.creators.BusCreatorImpl;
 import org.aston.course.application.usecase.creators.StudentCreatorImpl;
 import org.aston.course.application.usecase.creators.UserCreatorImpl;
+import org.aston.course.application.usecase.server.SocketServerClient;
 import org.aston.course.application.usecase.strategies.ConsoleLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.FileLoadStrategyImpl;
 import org.aston.course.application.usecase.strategies.RandomLoadStrategyImpl;
@@ -81,6 +82,7 @@ public class Main {
                 switch (userInput) {
                     case "1", "2", "3" -> typeOfEntity = userInput;
                     case "4" -> {
+                        new SocketServerClient().setRequest("stop");// подключаемся и останавливаем сервер
                         END_OF_PROGRAM = true;
                         continue;
                     }
@@ -89,7 +91,6 @@ public class Main {
                         continue;
                     }
                 }
-
                 System.out.print("\n1.Из файла\n" +
                                  "2.Вручную\n" +
                                  "3.Случайно\n" +
