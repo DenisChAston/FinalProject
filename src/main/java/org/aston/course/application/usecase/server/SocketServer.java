@@ -22,22 +22,28 @@ public class SocketServer {
             while (!request.equals("stop")) {
 /**Проверка запросов от клиента и отправка ответа
  */
-                if (request.equals(BusCreatorImpl.class.toString())) {
-                    outputStream.writeUTF(createBus());
-                    request = inputStream.readUTF();
-                } else if (request.equals(StudentCreatorImpl.class.toString())) {
-                    outputStream.writeUTF(createStudent());
-                    request = inputStream.readUTF();
-                } else if (request.equals(UserCreatorImpl.class.toString())) {
-                    outputStream.writeUTF(createUser());
-                    request = inputStream.readUTF();
+                try {
+                    if (request.equals(BusCreatorImpl.class.toString())) {
+                        outputStream.writeUTF(createBus());
+                        request = inputStream.readUTF();
+                    } else if (request.equals(StudentCreatorImpl.class.toString())) {
+                        outputStream.writeUTF(createStudent());
+                        request = inputStream.readUTF();
+                    } else if (request.equals(UserCreatorImpl.class.toString())) {
+                        outputStream.writeUTF(createUser());
+                        request = inputStream.readUTF();
+                    }
+                    //Перехват ошибки от мейн и штатное завершение сервера
+                } catch (IOException e) {
+                   request = "stop";
+
                 }
             }
-            outputStream.flush();
         }
-
     }
-    /** На основе случайного генератора - симуляция заполненной базы данных
+
+    /**
+     * На основе случайного генератора - симуляция заполненной базы данных
      * Если была бы готовая БД, то читали бы строки из нее
      */
     private static String createBus() {
@@ -48,6 +54,7 @@ public class SocketServer {
         return str;
 
     }
+
     private static String createStudent() {
         var student = new StudentCreatorImpl().random();
         StringBuilder sb = new StringBuilder();
@@ -55,6 +62,7 @@ public class SocketServer {
                 .append(student.getAverageScore()).append(" ").append(student.getGradebookNumber()));
         return str;
     }
+
     private static String createUser() {
         var user = new UserCreatorImpl().random();
         StringBuilder sb = new StringBuilder();
@@ -62,8 +70,8 @@ public class SocketServer {
                 .append(user.getPassword()).append(" ").append(user.getEmail()));
         return str;
     }
-
 }
+
 
 
 
