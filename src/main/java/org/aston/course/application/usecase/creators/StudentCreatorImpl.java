@@ -31,7 +31,7 @@ public class StudentCreatorImpl implements EntityCreator<Student> {
      */
     @Override
     public Student random() {
-        return create(String.valueOf(rnd.nextInt(1,50)), String.valueOf(rnd.nextDouble(0,5.1)), String.valueOf(rnd.nextInt(1,1000000)));
+        return create(String.valueOf(rnd.nextInt(1,50)), String.valueOf(rnd.nextDouble(0,5)), String.valueOf(rnd.nextInt(1,1000000)));
     }
 
     @Override
